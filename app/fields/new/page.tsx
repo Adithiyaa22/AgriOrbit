@@ -487,6 +487,7 @@ export default function AddFieldPage() {
                     className="h-11 w-full rounded-lg border border-[var(--border)] bg-white px-3 text-sm outline-none focus:border-[var(--primary)] focus:ring-2 focus:ring-green-100"
                   >
                     <option value="">Select unit</option>
+                    <option value="Sq. Ft">Sq. Ft</option>
                     <option value="Acre">Acre</option>
                     <option value="Cent">Cent</option>
                     <option value="Hectare">Hectare</option>

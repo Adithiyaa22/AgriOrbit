@@ -261,13 +261,23 @@ export default async function DashboardPage() {
                 </p>
               </div>
 
-              <Link
-                href="/surveys/new"
-                className="flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-semibold text-[var(--primary)] transition hover:bg-green-50 sm:w-auto"
-              >
-                <Plus size={18} />
-                New Survey
-              </Link>
+              <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+                <Link
+                  href="/farmers/new"
+                  className="flex h-11 w-full items-center justify-center gap-2 rounded-lg border border-white/40 bg-white/10 px-5 text-sm font-semibold text-white transition hover:bg-white/20 sm:w-auto"
+                >
+                  <Users size={18} />
+                  Add New Farmer
+                </Link>
+
+                <Link
+                  href="/surveys/new"
+                  className="flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-semibold text-[var(--primary)] transition hover:bg-green-50 sm:w-auto"
+                >
+                  <Plus size={18} />
+                  Start New Survey
+                </Link>
+              </div>
             </div>
           </section>
 

@@ -23,6 +23,7 @@ export default function AddFarmerPage() {
     gender: "",
     village: "",
     taluk: "",
+    pinCode: "",
     district: "",
     state: "Tamil Nadu",
     farmingExperience: "",
@@ -89,6 +90,11 @@ export default function AddFarmerPage() {
       return;
     }
 
+    if (!/^[0-9]{6}$/.test(form.pinCode)) {
+      setError("PIN Code must contain exactly 6 digits.");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -115,6 +121,7 @@ export default function AddFarmerPage() {
           village: form.village.trim(),
           taluk_block: form.taluk.trim() || null,
           district: form.district.trim(),
+          pin_code: form.pinCode,
           state: form.state.trim() || null,
 
           farming_experience_years:
@@ -439,6 +446,32 @@ export default function AddFarmerPage() {
                     placeholder="Enter district"
                     className="h-11 w-full rounded-lg border border-[var(--border)] px-3 text-sm outline-none focus:border-[var(--primary)] focus:ring-2 focus:ring-green-100"
                   />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="pinCode"
+                    className="mb-1.5 block text-sm font-medium"
+                  >
+                    PIN Code{" "}
+                    <span className="text-red-600">*</span>
+                  </label>
+
+                  <input
+                    id="pinCode"
+                    name="pinCode"
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]{6}"
+                    maxLength={6}
+                    value={form.pinCode}
+                    onChange={handleChange}
+                    placeholder="6-digit PIN Code"
+                    className="h-11 w-full rounded-lg border border-[var(--border)] px-3 text-sm outline-none focus:border-[var(--primary)] focus:ring-2 focus:ring-green-100"
+                  />
+                  <p className="mt-1 text-xs text-[var(--muted)]">
+                    Enter the 6-digit postal PIN code.
+                  </p>
                 </div>
 
                 <div>

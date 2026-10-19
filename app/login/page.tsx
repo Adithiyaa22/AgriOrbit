@@ -9,49 +9,16 @@ import {
   EyeOff,
   LockKeyhole,
   Mail,
-  ShieldCheck,
   Sprout,
-  UserRound,
-  Users,
 } from "lucide-react";
 
 import { createClient } from "@/lib/supabase/client";
-
-type Portal = "intern" | "admin" | "super_admin";
-
-const portalOptions: {
-  value: Portal;
-  label: string;
-  description: string;
-  icon: typeof UserRound;
-}[] = [
-  {
-    value: "intern",
-    label: "Intern",
-    description: "Field data collection",
-    icon: UserRound,
-  },
-  {
-    value: "admin",
-    label: "Admin",
-    description: "Operations and surveys",
-    icon: Users,
-  },
-  {
-    value: "super_admin",
-    label: "Super Admin",
-    description: "User and system management",
-    icon: ShieldCheck,
-  },
-];
 
 export default function LoginPage() {
   const router = useRouter();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [portal, setPortal] = useState<Portal>("intern");
-
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -106,22 +73,6 @@ export default function LoginPage() {
 
         setError(
           "Your account is inactive. Contact an administrator."
-        );
-
-        return;
-      }
-
-      if (profile.role !== portal) {
-        await supabase.auth.signOut();
-
-        const selectedPortal = portalOptions.find(
-          (item) => item.value === portal
-        );
-
-        setError(
-          `This account is not assigned to the ${
-            selectedPortal?.label || "selected"
-          } portal. Please select the correct portal.`
         );
 
         return;
@@ -269,7 +220,7 @@ export default function LoginPage() {
               </h2>
 
               <p className="mt-2 text-sm text-[var(--muted)]">
-                Choose your portal and sign in to AgriOrbit.
+                Sign in to AgriOrbit using your account credentials.
               </p>
             </div>
 
@@ -277,56 +228,6 @@ export default function LoginPage() {
               onSubmit={handleLogin}
               className="space-y-6"
             >
-
-              {/* Portal */}
-              <fieldset>
-                <legend className="mb-2.5 text-sm font-semibold text-[var(--text)]">
-                  Select your portal
-                </legend>
-
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-                  {portalOptions.map((option) => {
-                    const Icon = option.icon;
-                    const selected =
-                      portal === option.value;
-
-                    return (
-                      <button
-                        key={option.value}
-                        type="button"
-                        aria-pressed={selected}
-                        onClick={() => {
-                          setPortal(option.value);
-                          setError("");
-                        }}
-                        className={`rounded-xl border p-4 text-left transition ${
-                          selected
-                            ? "border-[var(--primary)] bg-[var(--light-green)] shadow-sm"
-                            : "border-[var(--border)] bg-white hover:border-[var(--primary)] hover:bg-[var(--light-green)]/40"
-                        }`}
-                      >
-                        <div
-                          className={`mb-3 flex h-9 w-9 items-center justify-center rounded-lg ${
-                            selected
-                              ? "bg-white text-[var(--primary)]"
-                              : "bg-slate-100 text-[var(--muted)]"
-                          }`}
-                        >
-                          <Icon size={18} />
-                        </div>
-
-                        <span className="block text-sm font-bold text-[var(--text)]">
-                          {option.label}
-                        </span>
-
-                        <span className="mt-1 block text-xs leading-4 text-[var(--muted)]">
-                          {option.description}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </fieldset>
 
               {/* Email */}
               <div>
@@ -449,8 +350,7 @@ export default function LoginPage() {
               </button>
 
               <p className="text-center text-xs leading-5 text-[var(--muted)]">
-                Use the portal assigned to your AgriOrbit
-                account.
+                Your account access is determined by the role assigned to it.
               </p>
             </form>
           </div>

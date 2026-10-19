@@ -1048,6 +1048,7 @@ export default function SurveyBPage() {
                   <option value="">
                     Select unit
                   </option>
+                  <option value="Sq. Ft">Sq. Ft</option>
                   <option value="Acre">Acre</option>
                   <option value="Cent">Cent</option>
                   <option value="Hectare">
