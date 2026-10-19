@@ -1,4 +1,4 @@
-const CACHE_NAME = "agriorbit-shell-v1";
+const CACHE_NAME = "agriorbit-shell-v2";
 
 const APP_SHELL = [
   "/",
@@ -9,6 +9,7 @@ const APP_SHELL = [
   "/surveys",
   "/surveys/new",
   "/drafts",
+  "/manifest.webmanifest",
 ];
 
 self.addEventListener("install", (event) => {
@@ -29,8 +30,8 @@ self.addEventListener("activate", (event) => {
             .map((key) => caches.delete(key))
         )
       )
+      .then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
 self.addEventListener("fetch", (event) => {
@@ -42,11 +43,18 @@ self.addEventListener("fetch", (event) => {
 
   if (url.origin !== self.location.origin) return;
 
-  // Never cache Supabase/API requests or Next server actions.
+  // Never intercept API requests, Supabase requests, or Next server actions.
   if (
     url.pathname.startsWith("/api/") ||
-    url.pathname.startsWith("/_next/data/")
+    url.pathname.startsWith("/_next/data/") ||
+    url.pathname.startsWith("/_next/server/")
   ) {
+    return;
+  }
+
+  // Let Next.js static chunks use the browser's normal HTTP cache.
+  // This prevents an old service worker from serving stale JS chunks after deployment.
+  if (url.pathname.startsWith("/_next/static/")) {
     return;
   }
 
@@ -64,7 +72,7 @@ self.addEventListener("fetch", (event) => {
         })
         .catch(async () => {
           const cached = await caches.match(request);
-          return cached || (await caches.match("/drafts"));
+          return cached || (await caches.match("/"));
         })
     );
     return;
