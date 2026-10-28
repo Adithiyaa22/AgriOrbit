@@ -8,6 +8,10 @@ import {
   Smartphone,
   Sprout,
   Wifi,
+  Leaf,
+  BarChart3,
+  Sprout as SproutIcon,
+  Droplets,
 } from "lucide-react";
 import PWAInstallButton from "@/components/pwa/PWAInstallButton";
 
@@ -61,25 +65,35 @@ export default function Home() {
           </Link>
         </header>
 
-        <section className="pt-14 text-center sm:pt-20 lg:pt-24">
-          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-white/90 px-4 py-2 text-xs font-bold text-[#2e7d32] shadow-sm backdrop-blur">
+        <section className="relative pt-14 text-center sm:pt-20 lg:pt-24">
+          <div className="agri-hero-orbit" aria-hidden="true">
+            <div className="agri-orbit-ring agri-orbit-ring-one" />
+            <div className="agri-orbit-ring agri-orbit-ring-two" />
+            <div className="agri-orbit-ring agri-orbit-ring-three" />
+            <div className="agri-orbit-core"><SproutIcon size={42} strokeWidth={1.8} /></div>
+            <div className="agri-orbit-leaf agri-leaf-one"><Leaf size={20} /></div>
+            <div className="agri-orbit-leaf agri-leaf-two"><Leaf size={16} /></div>
+            <div className="agri-orbit-leaf agri-leaf-three"><Leaf size={18} /></div>
+            <div className="agri-orbit-drop"><Droplets size={17} /></div>
+          </div>
+          <div className="relative z-10 mx-auto inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-white/90 px-4 py-2 text-xs font-bold text-[#2e7d32] shadow-sm backdrop-blur">
             <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
             Farmer &amp; Field Data Collection Platform
             <ArrowRight size={13} />
           </div>
 
-          <h1 className="mx-auto mt-7 max-w-5xl text-4xl font-black leading-[1.08] tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
+          <h1 className="relative z-10 mx-auto mt-7 max-w-5xl text-4xl font-black leading-[1.08] tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
             Empower field surveys anywhere —{" "}
             <span className="bg-gradient-to-r from-[#2e7d32] via-emerald-600 to-teal-600 bg-clip-text text-transparent">
               online or offline.
             </span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
+          <p className="relative z-10 mx-auto mt-6 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
             Collect farmer profiles, register agricultural fields, and submit surveys even when connectivity is unreliable. Data can be synchronized when the connection returns.
           </p>
 
-          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="relative z-10 mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <PWAInstallButton />
             <Link
               href="/login"
@@ -90,15 +104,21 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs font-medium text-slate-500">
+          <div className="relative z-10 mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs font-medium text-slate-500">
             <span className="inline-flex items-center gap-1.5"><Smartphone size={14} className="text-[#2e7d32]" /> Android-friendly PWA</span>
             <span className="inline-flex items-center gap-1.5"><Wifi size={14} className="text-[#2e7d32]" /> Online + offline workflow</span>
             <span className="inline-flex items-center gap-1.5"><ShieldCheck size={14} className="text-[#2e7d32]" /> Role-based access</span>
           </div>
         </section>
 
-        <section className="mx-auto mt-14 max-w-6xl sm:mt-16 lg:mt-20" aria-label="AgriOrbit application preview">
-          <div className="rounded-[28px] bg-slate-950 p-2 shadow-[0_30px_80px_rgba(15,23,42,0.20)] ring-1 ring-slate-900/10 sm:p-3">
+        <div className="relative mx-auto mt-12 h-10 max-w-5xl sm:mt-14" aria-hidden="true">
+          <div className="agri-field-line agri-field-line-a" />
+          <div className="agri-field-line agri-field-line-b" />
+          <div className="agri-field-line agri-field-line-c" />
+        </div>
+
+        <section className="agri-preview-scene mx-auto mt-3 max-w-6xl sm:mt-5 lg:mt-8" aria-label="AgriOrbit application preview">
+          <div className="agri-preview-shell rounded-[28px] bg-slate-950 p-2 shadow-[0_30px_80px_rgba(15,23,42,0.20)] ring-1 ring-slate-900/10 sm:p-3">
             <div className="overflow-hidden rounded-[22px] border border-white/10 bg-white">
               <div className="flex items-center justify-between bg-slate-900 px-4 py-3 text-xs text-slate-300 sm:px-5">
                 <div className="flex items-center gap-2">
@@ -191,7 +211,7 @@ export default function Home() {
 
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {features.map(({ icon: Icon, title, description }) => (
-              <div key={title} className="group rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-900/5">
+              <div key={title} className="agri-feature-card group rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-900/5">
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 transition group-hover:bg-[#2e7d32] group-hover:text-white">
                   <Icon size={21} />
                 </div>
