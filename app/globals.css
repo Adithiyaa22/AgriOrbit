@@ -395,3 +395,218 @@ input:focus, select:focus, textarea:focus {
   .agri-field-line { animation: none !important; }
   .agri-preview-shell { transform: none; }
 }
+
+/* =========================================================
+   Global AgriOrbit ambient motion
+   Shared across landing, auth, intern, admin and survey pages.
+   Decorative only: never blocks text or controls.
+   ========================================================= */
+.agri-global-motion {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.agri-global-glow {
+  position: absolute;
+  width: 24rem;
+  height: 24rem;
+  border-radius: 9999px;
+  filter: blur(60px);
+  opacity: .13;
+  will-change: transform;
+}
+.agri-glow-one { left: -10rem; top: 12%; background: #65a30d; animation: agri-global-drift-one 15s ease-in-out infinite alternate; }
+.agri-glow-two { right: -11rem; top: 38%; background: #14b8a6; animation: agri-global-drift-two 18s ease-in-out infinite alternate; }
+.agri-glow-three { left: 38%; bottom: -15rem; background: #22c55e; opacity: .09; animation: agri-global-drift-three 20s ease-in-out infinite alternate; }
+
+.agri-global-orbit {
+  position: absolute;
+  width: min(42vw, 620px);
+  height: min(16vw, 230px);
+  border: 1px solid rgba(46,125,50,.075);
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  filter: blur(.1px);
+}
+.agri-global-orbit-one {
+  left: -8vw;
+  top: 16%;
+  transform: rotateX(64deg) rotateZ(-12deg);
+  animation: agri-global-orbit-one 26s linear infinite;
+}
+.agri-global-orbit-two {
+  right: -8vw;
+  bottom: 14%;
+  transform: rotateX(64deg) rotateZ(18deg);
+  animation: agri-global-orbit-two 32s linear infinite reverse;
+}
+
+.agri-floating-symbol {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(46,125,50,.10);
+  border-radius: 16px;
+  color: rgba(46,125,50,.32);
+  background: rgba(255,255,255,.42);
+  box-shadow: 0 12px 30px rgba(15,23,42,.045);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transform-style: preserve-3d;
+}
+.agri-floating-symbol svg { width: 19px; height: 19px; }
+.agri-symbol-leaf { left: 7%; top: 27%; animation: agri-symbol-float-a 8s ease-in-out infinite; }
+.agri-symbol-drop { right: 7%; top: 24%; color: rgba(15,118,110,.30); animation: agri-symbol-float-b 9s ease-in-out -2s infinite; }
+.agri-symbol-map { left: 4%; bottom: 24%; animation: agri-symbol-float-b 10s ease-in-out -4s infinite; }
+.agri-symbol-sprout { right: 5%; bottom: 29%; animation: agri-symbol-float-a 8.5s ease-in-out -1s infinite; }
+.agri-symbol-sun { left: 48%; top: 7%; width: 34px; height: 34px; border-radius: 999px; color: rgba(161,98,7,.22); animation: agri-symbol-float-c 11s ease-in-out -3s infinite; }
+
+.agri-field-grid {
+  position: absolute;
+  left: 50%;
+  bottom: -3%;
+  width: min(90vw, 1100px);
+  height: 34%;
+  transform: translateX(-50%) perspective(700px) rotateX(62deg);
+  transform-origin: bottom center;
+  opacity: .16;
+}
+.agri-field-grid::before, .agri-field-grid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(46,125,50,.14) 1px, transparent 1px);
+  background-size: 100% 28px;
+}
+.agri-field-grid::after {
+  background-image: linear-gradient(90deg, rgba(46,125,50,.11) 1px, transparent 1px);
+  background-size: 70px 100%;
+  animation: agri-grid-slide 14s linear infinite;
+}
+.agri-field-grid span {
+  position: absolute;
+  top: 10%;
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(46,125,50,.38);
+  animation: agri-particle-rise 7s ease-in-out infinite;
+}
+.agri-field-grid span:nth-child(1) { left: 18%; animation-delay: -1s; }
+.agri-field-grid span:nth-child(2) { left: 31%; animation-delay: -4s; }
+.agri-field-grid span:nth-child(3) { left: 47%; animation-delay: -2s; }
+.agri-field-grid span:nth-child(4) { left: 62%; animation-delay: -5s; }
+.agri-field-grid span:nth-child(5) { left: 74%; animation-delay: -3s; }
+.agri-field-grid span:nth-child(6) { left: 86%; animation-delay: -6s; }
+
+.agri-global-particle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(46,125,50,.28);
+  box-shadow: 0 0 18px rgba(46,125,50,.22);
+  animation: agri-particle-float 9s ease-in-out infinite;
+}
+.agri-particle-one { left: 18%; top: 18%; animation-delay: -1s; }
+.agri-particle-two { left: 82%; top: 16%; animation-delay: -5s; }
+.agri-particle-three { left: 25%; top: 58%; animation-delay: -3s; }
+.agri-particle-four { right: 22%; top: 65%; animation-delay: -7s; }
+.agri-particle-five { left: 55%; top: 31%; animation-delay: -6s; }
+.agri-particle-six { left: 67%; top: 82%; animation-delay: -2s; }
+
+@keyframes agri-global-drift-one {
+  from { transform: translate3d(0,0,0) scale(1); }
+  to { transform: translate3d(80px,-35px,0) scale(1.12); }
+}
+@keyframes agri-global-drift-two {
+  from { transform: translate3d(0,0,0) scale(1); }
+  to { transform: translate3d(-65px,45px,0) scale(1.10); }
+}
+@keyframes agri-global-drift-three {
+  from { transform: translate3d(-40px,0,0) scale(1); }
+  to { transform: translate3d(50px,-30px,0) scale(1.08); }
+}
+@keyframes agri-global-orbit-one {
+  from { transform: rotateX(64deg) rotateZ(-12deg) translateX(0); }
+  to { transform: rotateX(64deg) rotateZ(348deg) translateX(0); }
+}
+@keyframes agri-global-orbit-two {
+  from { transform: rotateX(64deg) rotateZ(18deg) translateX(0); }
+  to { transform: rotateX(64deg) rotateZ(378deg) translateX(0); }
+}
+@keyframes agri-symbol-float-a {
+  0%,100% { transform: translate3d(0,0,20px) rotate(-3deg); }
+  50% { transform: translate3d(12px,-20px,55px) rotate(6deg); }
+}
+@keyframes agri-symbol-float-b {
+  0%,100% { transform: translate3d(0,0,15px) rotate(4deg); }
+  50% { transform: translate3d(-14px,-17px,48px) rotate(-5deg); }
+}
+@keyframes agri-symbol-float-c {
+  0%,100% { transform: translate3d(0,0,0) scale(1); }
+  50% { transform: translate3d(0,8px,20px) scale(1.08); }
+}
+@keyframes agri-grid-slide {
+  from { transform: translateX(0); }
+  to { transform: translateX(70px); }
+}
+@keyframes agri-particle-float {
+  0%,100% { transform: translate3d(0,0,0) scale(.8); opacity: .25; }
+  50% { transform: translate3d(18px,-28px,35px) scale(1.35); opacity: .7; }
+}
+@keyframes agri-particle-rise {
+  0%,100% { transform: translateY(0) scale(.7); opacity: .15; }
+  50% { transform: translateY(-35px) scale(1.2); opacity: .65; }
+}
+
+/* Keep the landing hero text clean: the main 3D ornament lives beside the copy, not under it. */
+.agri-hero-orbit {
+  left: 78%;
+  top: 1.5rem;
+  width: min(42vw, 520px);
+  height: min(42vw, 520px);
+  opacity: .38;
+}
+
+@media (max-width: 900px) {
+  .agri-hero-orbit {
+    left: 50%;
+    top: 1rem;
+    width: min(78vw, 480px);
+    height: min(78vw, 480px);
+    opacity: .18;
+  }
+  .agri-symbol-map, .agri-symbol-sprout { opacity: .65; }
+}
+
+@media (max-width: 640px) {
+  .agri-global-orbit { opacity: .55; }
+  .agri-floating-symbol { width: 34px; height: 34px; border-radius: 12px; }
+  .agri-floating-symbol svg { width: 15px; height: 15px; }
+  .agri-symbol-sun { display: none; }
+  .agri-field-grid { width: 125vw; height: 28%; bottom: -5%; opacity: .10; }
+  .agri-global-glow { width: 15rem; height: 15rem; filter: blur(48px); opacity: .10; }
+  .agri-hero-orbit {
+    left: 50%;
+    top: 2rem;
+    width: 105vw;
+    height: 105vw;
+    opacity: .10;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agri-global-motion *,
+  .agri-global-motion::before,
+  .agri-global-motion::after {
+    animation: none !important;
+  }
+}

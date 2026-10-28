@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/components/i18n/LanguageProvider";
+import AgriAmbient from "@/components/layout/AgriAmbient";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -29,7 +30,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          <AgriAmbient />
+          <div className="relative z-10 min-h-screen">{children}</div>
+        </LanguageProvider>
       </body>
     </html>
   );
