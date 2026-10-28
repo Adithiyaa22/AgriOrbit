@@ -248,7 +248,7 @@ export default async function DashboardPage() {
               New Survey CTA
           --------------------------------- */}
 
-          <section className="mb-6 rounded-2xl bg-[var(--primary)] p-5 text-white sm:p-6">
+          <section className="agri-3d-card agri-soft-pulse mb-6 rounded-2xl bg-[var(--primary)] p-5 text-white shadow-lg sm:p-6">
             <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <h2 className="text-lg font-semibold">
@@ -293,7 +293,7 @@ export default async function DashboardPage() {
                 <Link
                   key={stat.label}
                   href={stat.href}
-                  className="rounded-xl border border-[var(--border)] bg-white p-4 shadow-sm transition hover:border-[var(--primary)] hover:shadow-md sm:p-5"
+                  className="agri-3d-card rounded-xl border border-[var(--border)] bg-white p-4 shadow-sm transition hover:border-[var(--primary)] hover:shadow-md sm:p-5"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>

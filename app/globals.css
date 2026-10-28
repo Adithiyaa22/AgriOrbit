@@ -34,3 +34,207 @@ body {
   color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* =========================================================
+   AgriOrbit Dynamic UI Layer
+   Lightweight CSS-only motion/depth — no new dependency.
+   ========================================================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 8% 8%, rgba(76, 175, 80, 0.10), transparent 24rem),
+    radial-gradient(circle at 92% 18%, rgba(34, 197, 94, 0.07), transparent 22rem),
+    var(--background);
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 22rem;
+  height: 22rem;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(70px);
+  opacity: .24;
+  animation: agri-float 12s ease-in-out infinite alternate;
+}
+
+body::before {
+  top: 8%;
+  left: -10rem;
+  background: rgba(46, 125, 50, .18);
+}
+
+body::after {
+  right: -10rem;
+  bottom: 8%;
+  background: rgba(76, 175, 80, .16);
+  animation-delay: -5s;
+}
+
+@keyframes agri-float {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(18px, -24px, 0) scale(1.08); }
+}
+
+@keyframes agri-fade-up {
+  from { opacity: 0; transform: translate3d(0, 14px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes agri-pop {
+  from { opacity: 0; transform: scale(.97) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes agri-shimmer {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+
+@keyframes agri-pulse-soft {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(46,125,50,.08); }
+  50% { box-shadow: 0 0 0 8px rgba(46,125,50,0); }
+}
+
+/* Main page entrance */
+main > div,
+main > section {
+  animation: agri-fade-up .45s ease both;
+}
+
+/* Premium depth for common dashboard/form cards */
+:where(.rounded-xl.bg-white, .rounded-2xl.bg-white, .rounded-xl.border, .rounded-2xl.border) {
+  transition:
+    transform .25s cubic-bezier(.2,.8,.2,1),
+    box-shadow .25s ease,
+    border-color .25s ease;
+}
+
+:where(.rounded-xl.bg-white, .rounded-2xl.bg-white):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 35px rgba(15, 23, 42, .09);
+}
+
+/* Interactive links/buttons get a tactile press + lift */
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:not(:disabled),
+a[class*="transition"] {
+  transition-duration: .22s;
+}
+
+button:not(:disabled):active,
+a[class*="transition"]:active {
+  transform: scale(.985);
+}
+
+/* Primary green surfaces receive a restrained animated sheen */
+:where(a, button)[class*="bg-[var(--primary)]"] {
+  position: relative;
+  overflow: hidden;
+}
+
+:where(a, button)[class*="bg-[var(--primary)]"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 25%, rgba(255,255,255,.16) 50%, transparent 75%);
+  background-size: 220% 100%;
+  transform: translateX(-100%);
+  transition: transform .65s ease;
+  pointer-events: none;
+}
+
+:where(a, button)[class*="bg-[var(--primary)]"]:hover::after {
+  transform: translateX(100%);
+}
+
+/* Inputs feel more polished on focus */
+input, select, textarea {
+  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  transform: translateY(-1px);
+}
+
+/* Tables/cards reveal smoothly when React renders them */
+[role="dialog"],
+[data-state="open"] {
+  animation: agri-pop .24s ease both;
+}
+
+/* Utility classes for pages/components that want stronger 3D motion */
+.agri-3d-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease;
+}
+
+.agri-3d-card:hover {
+  transform: perspective(1000px) rotateX(1.5deg) rotateY(-1.5deg) translateY(-5px);
+  box-shadow: 0 22px 45px rgba(15,23,42,.12);
+}
+
+.agri-glass {
+  background: rgba(255,255,255,.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,.72);
+}
+
+.agri-gradient-text {
+  background: linear-gradient(100deg, #166534, #2e7d32, #65a30d);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: agri-shimmer 6s ease-in-out infinite alternate;
+}
+
+.agri-soft-pulse {
+  animation: agri-pulse-soft 2.8s ease-in-out infinite;
+}
+
+.agri-float-in {
+  animation: agri-fade-up .55s cubic-bezier(.2,.8,.2,1) both;
+}
+
+/* Keep motion comfortable on phones and for reduced-motion users */
+@media (max-width: 640px) {
+  body::before,
+  body::after {
+    width: 15rem;
+    height: 15rem;
+    filter: blur(55px);
+  }
+
+  :where(.rounded-xl.bg-white, .rounded-2xl.bg-white):hover {
+    transform: translateY(-1px);
+  }
+
+  .agri-3d-card:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

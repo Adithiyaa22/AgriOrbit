@@ -111,7 +111,7 @@ function getInitials(fullName: string | null, role: UserRole) {
 
 function Logo() {
   return (
-    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--light-green)]">
+    <div className="agri-3d-card flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--light-green)] shadow-sm">
       <svg
         viewBox="0 0 64 64"
         className="h-6 w-6"
@@ -240,12 +240,16 @@ export default function InternLayout({
   const roleDisplay = getRoleDisplay(accountRole);
 
   return (
-    <div className="min-h-screen bg-[var(--background)]">
+    <div className="agri-app-shell relative min-h-screen overflow-x-hidden bg-[var(--background)]">
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-0 overflow-hidden">
+        <div className="absolute left-[8%] top-24 h-24 w-24 rounded-full bg-green-200/20 blur-2xl animate-pulse" />
+        <div className="absolute right-[10%] top-[42%] h-32 w-32 rounded-full bg-emerald-200/15 blur-3xl" />
+      </div>
       <OfflineSyncManager />
 
       {/* Desktop sidebar */}
 
-      <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col border-r border-[var(--border)] bg-white lg:flex">
+      <aside className="agri-glass fixed inset-y-0 left-0 z-40 hidden w-64 flex-col border-r border-[var(--border)] bg-white lg:flex">
         {/* Brand */}
 
         <div className="flex h-20 items-center gap-3 border-b border-[var(--border)] px-5">
@@ -276,7 +280,7 @@ export default function InternLayout({
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-semibold transition ${
+                className={`agri-3d-card flex items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-semibold transition ${
                   item.primary
                     ? "mt-3 bg-[var(--primary)] text-white shadow-sm hover:opacity-90"
                     : active
@@ -353,7 +357,7 @@ export default function InternLayout({
 
       {/* Mobile header */}
 
-      <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-white lg:hidden">
+      <header className="agri-glass sticky top-0 z-30 border-b border-[var(--border)] lg:hidden">
         <div className="flex h-16 items-center justify-between px-4 sm:px-6">
           <div className="flex items-center gap-3">
             <Logo />
