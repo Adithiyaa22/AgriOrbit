@@ -103,20 +103,8 @@ export default function LoginPage() {
       <div className="flex min-h-screen flex-col lg:flex-row">
 
         {/* Left branding panel */}
-        <section className="agri-login-panel flex min-h-[300px] flex-1 items-center justify-center bg-[var(--primary)] px-6 py-12 text-white lg:min-h-screen lg:px-12">
-          <div className="agri-login-scene" aria-hidden="true">
-            <div className="agri-login-sun" />
-            <div className="agri-login-glass-orbit agri-login-glass-orbit-one" />
-            <div className="agri-login-glass-orbit agri-login-glass-orbit-two" />
-            <div className="agri-login-field agri-login-field-one" />
-            <div className="agri-login-field agri-login-field-two" />
-            <div className="agri-login-field agri-login-field-three" />
-            <div className="agri-login-leaf agri-login-leaf-one" />
-            <div className="agri-login-leaf agri-login-leaf-two" />
-            <div className="agri-login-glint agri-login-glint-one" />
-            <div className="agri-login-glint agri-login-glint-two" />
-          </div>
-          <div className="agri-login-brand w-full max-w-lg">
+        <section className="flex min-h-[300px] flex-1 items-center justify-center bg-[var(--primary)] px-6 py-12 text-white lg:min-h-screen lg:px-12">
+          <div className="w-full max-w-lg">
 
             {/* Logo */}
             <div className="mb-7 flex items-center gap-3">
