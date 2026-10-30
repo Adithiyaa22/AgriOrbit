@@ -611,155 +611,127 @@ input:focus, select:focus, textarea:focus {
   }
 }
 
-/* Focused 3D scenes for the four primary user journeys */
-.agri-hero-3d {
-  transform-style: preserve-3d;
-  perspective: 1100px;
-  animation: agri-hero-scene-in .9s cubic-bezier(.2,.8,.2,1) both;
-}
-.agri-preview-scene {
-  transform-style: preserve-3d;
-  transition: transform .45s cubic-bezier(.2,.8,.2,1), filter .45s ease;
-}
-.agri-preview-scene:hover {
-  transform: perspective(1200px) rotateX(1deg) rotateY(-1deg) translateY(-5px);
-  filter: drop-shadow(0 22px 28px rgba(22,101,52,.10));
-}
-.agri-login-panel {
-  position: relative;
+/* =========================================================
+   AgriOrbit signature 3D experience — visual-only enhancement
+   Does not alter routes, state, forms, permissions or data flows.
+   ========================================================= */
+.agri-home {
   isolation: isolate;
-  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(187, 247, 208, .55), transparent 42rem),
+    linear-gradient(180deg, #f7fcf7 0%, #f8fbf8 54%, #f4faf5 100%);
 }
-.agri-login-panel::before,
-.agri-login-panel::after {
-  content: "";
-  position: absolute;
-  width: 22rem;
-  height: 22rem;
-  border: 1px solid rgba(255,255,255,.14);
-  border-radius: 38% 62% 55% 45%;
-  transform: rotateX(62deg) rotateZ(-24deg);
-  pointer-events: none;
-  animation: agri-login-orbit 18s linear infinite;
+.agri-home-hero { isolation: isolate; }
+.agri-home-scenery {
+  position: absolute; z-index: 0; inset: -2rem -5vw -1rem;
+  overflow: hidden; pointer-events: none; perspective: 1100px;
 }
-.agri-login-panel::before { right: -8rem; top: 8%; box-shadow: 0 0 0 28px rgba(255,255,255,.025), 0 0 0 58px rgba(255,255,255,.02); }
-.agri-login-panel::after { left: -12rem; bottom: -12rem; width: 18rem; height: 18rem; animation-duration: 24s; animation-direction: reverse; }
-.agri-login-brand { position: relative; z-index: 1; animation: agri-fade-up .7s ease both; }
-.agri-login-form-scene {
-  transform-style: preserve-3d;
-  animation: agri-login-form-in .7s cubic-bezier(.2,.8,.2,1) both;
+.agri-scenery-sun {
+  position: absolute; top: 3.5rem; right: 14%; width: clamp(5rem, 10vw, 9rem); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff 0 5%, #fef3c7 24%, rgba(253, 230, 138, .55) 55%, rgba(253, 230, 138, 0) 74%);
+  filter: blur(.3px); opacity: .78; animation: agri-sun-breathe 8s ease-in-out infinite;
 }
-.agri-login-form-scene form {
-  transform-style: preserve-3d;
-  transition: transform .35s ease, box-shadow .35s ease;
+.agri-scenery-orbit {
+  position: absolute; width: clamp(15rem, 28vw, 27rem); height: clamp(6rem, 11vw, 10rem);
+  border: 1px solid rgba(22, 101, 52, .12); border-radius: 50%; transform-style: preserve-3d;
+  box-shadow: 0 0 35px rgba(16, 185, 129, .035), inset 0 0 25px rgba(255,255,255,.35);
 }
-.agri-login-form-scene form:focus-within {
-  transform: perspective(1000px) rotateX(.5deg) translateY(-2px);
+.agri-scenery-orbit-one { top: 1.5rem; left: 4%; transform: rotateX(67deg) rotateZ(-23deg); animation: agri-scenery-drift 22s linear infinite; }
+.agri-scenery-orbit-two { right: 1%; top: 8rem; transform: rotateX(69deg) rotateZ(24deg); animation: agri-scenery-drift 29s linear infinite reverse; }
+.agri-fieldscape {
+  position: absolute; bottom: 1.5rem; width: clamp(13rem, 24vw, 24rem); height: clamp(8rem, 15vw, 13rem);
+  transform-style: preserve-3d; opacity: .52; filter: drop-shadow(0 18px 24px rgba(22,101,52,.08));
 }
-.agri-dashboard-scene > div > section,
-.agri-profile-scene > div > section {
-  animation: agri-fade-up .55s cubic-bezier(.2,.8,.2,1) both;
+.agri-fieldscape-left { left: -1.5rem; transform: perspective(700px) rotateX(62deg) rotateZ(16deg); }
+.agri-fieldscape-right { right: -1.5rem; transform: perspective(700px) rotateX(62deg) rotateZ(-16deg) scaleX(-1); }
+.agri-fieldscape span {
+  position: absolute; left: 0; width: 100%; height: 48%; border: 1px solid rgba(21, 128, 61, .2); border-radius: 50%;
+  background: linear-gradient(180deg, rgba(134, 239, 172, .12), rgba(34, 197, 94, .025));
+  box-shadow: inset 0 8px 16px rgba(255,255,255,.18); animation: agri-field-breathe 7s ease-in-out infinite alternate;
 }
-.agri-dashboard-scene > div > section:nth-of-type(2),
-.agri-profile-scene > div > section:nth-of-type(2) { animation-delay: .06s; }
-.agri-dashboard-scene > div > section:nth-of-type(3),
-.agri-profile-scene > div > section:nth-of-type(3) { animation-delay: .12s; }
-.agri-dashboard-scene .agri-3d-card,
-.agri-profile-scene .agri-3d-card { transform-style: preserve-3d; }
-@keyframes agri-hero-scene-in {
-  from { opacity: 0; transform: perspective(1100px) rotateX(7deg) translateY(18px); }
-  to { opacity: 1; transform: perspective(1100px) rotateX(0) translateY(0); }
+.agri-fieldscape span:nth-child(1) { top: 0; }
+.agri-fieldscape span:nth-child(2) { top: 17%; transform: scaleX(.91); animation-delay: -1.2s; }
+.agri-fieldscape span:nth-child(3) { top: 34%; transform: scaleX(.81); animation-delay: -2.4s; }
+.agri-fieldscape span:nth-child(4) { top: 51%; transform: scaleX(.7); animation-delay: -3.6s; }
+.agri-scenery-particle { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: #65a30d; box-shadow: 0 0 18px rgba(101,163,13,.5); opacity: .38; }
+.agri-scenery-particle-one { top: 28%; left: 13%; animation: agri-particle-float 8s ease-in-out infinite; }
+.agri-scenery-particle-two { top: 18%; right: 26%; animation: agri-particle-float 10s ease-in-out -3s infinite; }
+.agri-scenery-particle-three { bottom: 25%; right: 12%; animation: agri-particle-float 9s ease-in-out -5s infinite; }
+.agri-home-hero > :not(.agri-home-scenery) { position: relative; z-index: 2; }
+.agri-home-hero .agri-hero-orbit { z-index: 1; }
+.agri-home .agri-preview-scene { position: relative; z-index: 2; }
+.agri-home .agri-preview-shell { box-shadow: 0 34px 85px rgba(15, 23, 42, .17), 0 12px 34px rgba(22, 101, 52, .10); }
+.agri-home .agri-feature-card { background: linear-gradient(150deg, rgba(255,255,255,.98), rgba(248,252,248,.96)); }
+
+/* Login: layered greenhouse-inspired 3D scene stays behind the copy. */
+.agri-login-panel { position: relative; isolation: isolate; overflow: hidden; background: linear-gradient(135deg, #14532d 0%, #166534 42%, #0f766e 100%) !important; }
+.agri-login-scene { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; perspective: 1000px; }
+.agri-login-brand { position: relative; z-index: 2; }
+.agri-login-sun {
+  position: absolute; top: 8%; right: 12%; width: clamp(6rem, 12vw, 11rem); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle at 35% 32%, rgba(255,255,255,.95), rgba(253,230,138,.46) 38%, rgba(253,230,138,0) 72%);
+  filter: blur(1px); opacity: .55; animation: agri-sun-breathe 9s ease-in-out infinite;
 }
-@keyframes agri-login-orbit {
-  from { rotate: 0deg; }
-  to { rotate: 360deg; }
-}
-@keyframes agri-login-form-in {
-  from { opacity: 0; transform: perspective(1000px) rotateY(-5deg) translateY(14px); }
-  to { opacity: 1; transform: perspective(1000px) rotateY(0) translateY(0); }
+.agri-login-glass-orbit { position: absolute; width: min(34vw, 27rem); height: min(12vw, 9rem); border: 1px solid rgba(236,253,245,.22); border-radius: 50%; box-shadow: 0 0 40px rgba(167,243,208,.08), inset 0 0 30px rgba(255,255,255,.045); }
+.agri-login-glass-orbit-one { top: 13%; right: -6%; transform: rotateX(68deg) rotateZ(-22deg); animation: agri-scenery-drift 25s linear infinite; }
+.agri-login-glass-orbit-two { bottom: 13%; left: -9%; transform: rotateX(68deg) rotateZ(18deg); animation: agri-scenery-drift 31s linear infinite reverse; }
+.agri-login-field { position: absolute; left: -15%; bottom: -23%; width: 135%; height: 43%; border: 1px solid rgba(220,252,231,.2); border-radius: 50%; transform: perspective(650px) rotateX(62deg); box-shadow: 0 -8px 28px rgba(167,243,208,.04), inset 0 12px 28px rgba(255,255,255,.035); }
+.agri-login-field-one { bottom: -15%; }
+.agri-login-field-two { bottom: -22%; transform: perspective(650px) rotateX(62deg) scaleX(.91); }
+.agri-login-field-three { bottom: -29%; transform: perspective(650px) rotateX(62deg) scaleX(.82); }
+.agri-login-leaf { position: absolute; width: 1.2rem; height: 2.3rem; border: 1px solid rgba(220,252,231,.36); border-radius: 100% 0 100% 0; background: linear-gradient(145deg, rgba(187,247,208,.35), rgba(20,184,166,.08)); filter: drop-shadow(0 8px 12px rgba(0,0,0,.12)); }
+.agri-login-leaf-one { top: 24%; right: 11%; transform: rotate(30deg); animation: agri-login-leaf-float 8s ease-in-out infinite; }
+.agri-login-leaf-two { bottom: 30%; right: 25%; transform: rotate(65deg) scale(.7); animation: agri-login-leaf-float 10s ease-in-out -3s infinite; }
+.agri-login-glint { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #d9f99d; box-shadow: 0 0 18px 4px rgba(217,249,157,.35); animation: agri-glint 4.5s ease-in-out infinite; }
+.agri-login-glint-one { top: 22%; left: 12%; }
+.agri-login-glint-two { top: 55%; right: 9%; animation-delay: -2s; }
+.agri-login-panel::before, .agri-login-panel::after { z-index: 1; opacity: .24; }
+.agri-login-form-scene form { border-radius: 1.25rem; }
+
+@keyframes agri-sun-breathe { 0%,100% { transform: translate3d(0,0,0) scale(.96); opacity: .48; } 50% { transform: translate3d(-8px,-12px,20px) scale(1.04); opacity: .78; } }
+@keyframes agri-scenery-drift { from { rotate: 0deg; } to { rotate: 360deg; } }
+@keyframes agri-field-breathe { from { opacity: .48; translate: 0 0; } to { opacity: .88; translate: 0 -5px; } }
+@keyframes agri-login-leaf-float { 0%,100% { translate: 0 0; rotate: 0deg; } 50% { translate: -10px -16px; rotate: 14deg; } }
+@keyframes agri-glint { 0%,100% { opacity: .18; transform: scale(.7); } 50% { opacity: .9; transform: scale(1.45); } }
+
+@media (max-width: 900px) {
+  .agri-fieldscape { opacity: .27; }
+  .agri-scenery-orbit { opacity: .5; }
+  .agri-login-glass-orbit { width: 42vw; }
 }
 @media (max-width: 640px) {
-  .agri-preview-scene:hover,
-  .agri-login-form-scene form:focus-within { transform: none; }
-  .agri-login-panel::before,
-  .agri-login-panel::after { opacity: .45; }
+  .agri-home-scenery { inset: 0 -15vw; opacity: .55; }
+  .agri-fieldscape { width: 12rem; height: 8rem; opacity: .2; }
+  .agri-scenery-sun { right: 4%; top: 1rem; opacity: .38; }
+  .agri-scenery-orbit-one { left: -22%; }
+  .agri-scenery-orbit-two { right: -25%; }
+  .agri-login-panel { min-height: 340px; }
+  .agri-login-sun { right: 5%; top: 5%; }
+  .agri-login-field { height: 34%; bottom: -18%; }
+  .agri-login-leaf-two, .agri-login-glint-two { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .agri-hero-3d,
-  .agri-login-brand,
-  .agri-login-form-scene,
-  .agri-dashboard-scene > div > section,
-  .agri-profile-scene > div > section { animation: none !important; }
-  .agri-preview-scene:hover,
-  .agri-login-form-scene form:focus-within { transform: none; }
+  .agri-scenery-sun, .agri-scenery-orbit, .agri-fieldscape span,
+  .agri-scenery-particle, .agri-login-sun, .agri-login-glass-orbit,
+  .agri-login-leaf, .agri-login-glint { animation: none !important; }
 }
-.agri-feature-card {
-  transform-style: preserve-3d;
-  transition: transform .32s cubic-bezier(.2,.8,.2,1), box-shadow .32s ease, border-color .32s ease;
-}
-.agri-feature-card:hover {
-  transform: perspective(900px) rotateX(2deg) rotateY(-2deg) translateY(-6px);
-  box-shadow: 0 22px 42px rgba(15, 23, 42, .11);
-}
-.agri-feature-card > div:first-child { transform: translateZ(18px); }
-@media (max-width: 640px) {
-  .agri-feature-card:hover { transform: translateY(-2px); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .agri-feature-card:hover { transform: none; }
-}
-
-
-/* Continuous, peripheral AgriOrbit depth layer — decorative motion stays behind content. */
-.agri-global-motion { z-index: 0; }
-.agri-global-glow { opacity: .075; }
-.agri-global-orbit { opacity: .42; }
-.agri-floating-symbol { opacity: .42; }
-.agri-field-grid { opacity: .10; }
-.agri-hero-orbit {
+/* Keep the signature orbit peripheral so the hero copy remains perfectly clear. */
+.agri-home-hero > .agri-hero-orbit {
   left: auto;
   right: clamp(-8rem, 2vw, 2rem);
-  top: 2.25rem;
+  top: 1.5rem;
   width: min(34vw, 430px);
   height: min(34vw, 430px);
-  opacity: .22;
+  transform: none;
+  opacity: .19;
   z-index: 0;
 }
-.agri-hero-orbit .agri-orbit-core { opacity: .72; }
-.agri-hero-orbit .agri-orbit-ring { border-color: rgba(46,125,50,.11); }
-.agri-hero-orbit .agri-orbit-leaf,
-.agri-hero-orbit .agri-orbit-drop { opacity: .72; }
-.agri-admin-scene { position: relative; isolation: isolate; }
-.agri-admin-scene > main,
-.agri-admin-scene > div > main,
-.agri-admin-scene main { position: relative; z-index: 1; }
-.agri-admin-scene main > div > section,
-.agri-admin-scene main > section { animation: agri-fade-up .52s cubic-bezier(.2,.8,.2,1) both; }
-.agri-admin-scene main > div > section:nth-of-type(2),
-.agri-admin-scene main > section:nth-of-type(2) { animation-delay: .07s; }
-.agri-admin-scene main > div > section:nth-of-type(3),
-.agri-admin-scene main > section:nth-of-type(3) { animation-delay: .14s; }
-.agri-admin-scene :where(.rounded-xl.bg-white, .rounded-2xl.bg-white, .rounded-xl.border, .rounded-2xl.border) {
-  transform-style: preserve-3d;
-  transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
-}
-.agri-admin-scene :where(.rounded-xl.bg-white, .rounded-2xl.bg-white):hover {
-  transform: translateY(-3px) rotateX(.5deg);
-  box-shadow: 0 18px 38px rgba(15,23,42,.085);
-}
-.agri-dashboard-scene, .agri-profile-scene, .agri-admin-scene {
-  background-image: radial-gradient(ellipse at 92% 8%, rgba(34,197,94,.045), transparent 28rem),
-                    radial-gradient(ellipse at 4% 78%, rgba(20,184,166,.035), transparent 25rem);
-}
+.agri-home-hero > .agri-hero-orbit .agri-orbit-core { opacity: .55; }
+.agri-home-hero > .agri-hero-orbit .agri-orbit-leaf,
+.agri-home-hero > .agri-hero-orbit .agri-orbit-drop { opacity: .5; }
 @media (max-width: 900px) {
-  .agri-hero-orbit { right: -8rem; top: 1rem; width: 390px; height: 390px; opacity: .13; }
+  .agri-home-hero > .agri-hero-orbit { right: -7rem; width: 350px; height: 350px; opacity: .11; }
 }
 @media (max-width: 640px) {
-  .agri-hero-orbit { right: -9rem; left: auto; top: 1rem; width: 320px; height: 320px; opacity: .09; }
-  .agri-global-glow { opacity: .055; }
-  .agri-floating-symbol { opacity: .25; }
-  .agri-admin-scene :where(.rounded-xl.bg-white, .rounded-2xl.bg-white):hover { transform: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .agri-admin-scene main > div > section, .agri-admin-scene main > section { animation: none !important; }
+  .agri-home-hero > .agri-hero-orbit { right: -8rem; top: .5rem; width: 300px; height: 300px; opacity: .075; }
 }

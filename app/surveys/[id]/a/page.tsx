@@ -10,7 +10,6 @@ import {
 } from "lucide-react";
 
 import InternLayout from "@/components/layout/InternLayout";
-import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { createClient } from "@/lib/supabase/client";
 import { getClientUser } from "@/lib/auth/get-client-user";
 import { useOnlineStatus } from "@/lib/offline/useOnlineStatus";
@@ -47,7 +46,6 @@ export default function SurveyAPage() {
   const router = useRouter();
   const supabase = createClient();
   const isOnline = useOnlineStatus();
-  const { language } = useLanguage();
 
   const surveyId = params.id as string;
 
@@ -755,17 +753,7 @@ export default function SurveyAPage() {
                       GPS status
                     </label>
                     <input
-                      value={
-                        language === "ta"
-                          ? gpsCaptured === "Yes"
-                            ? "ஆம்"
-                            : gpsCaptured === "No"
-                              ? "இல்லை"
-                              : gpsCaptured
-                                ? gpsCaptured
-                                : "பதிவு செய்யப்படவில்லை"
-                          : gpsCaptured || "Not captured"
-                      }
+                      value={gpsCaptured || "Not captured"}
                       readOnly
                       className="h-11 w-full rounded-lg border border-[var(--border)] bg-slate-50 px-3 text-sm text-slate-600 outline-none"
                     />

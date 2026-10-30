@@ -156,7 +156,7 @@ export default function AdminLayout({
   }
 
   return (
-    <div className="agri-admin-scene min-h-screen bg-[var(--background)]">
+    <div className="min-h-screen bg-[var(--background)]">
 
       {/* Mobile overlay */}
       {mobileMenuOpen && (

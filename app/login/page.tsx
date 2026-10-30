@@ -104,6 +104,18 @@ export default function LoginPage() {
 
         {/* Left branding panel */}
         <section className="agri-login-panel flex min-h-[300px] flex-1 items-center justify-center bg-[var(--primary)] px-6 py-12 text-white lg:min-h-screen lg:px-12">
+          <div className="agri-login-scene" aria-hidden="true">
+            <div className="agri-login-sun" />
+            <div className="agri-login-glass-orbit agri-login-glass-orbit-one" />
+            <div className="agri-login-glass-orbit agri-login-glass-orbit-two" />
+            <div className="agri-login-field agri-login-field-one" />
+            <div className="agri-login-field agri-login-field-two" />
+            <div className="agri-login-field agri-login-field-three" />
+            <div className="agri-login-leaf agri-login-leaf-one" />
+            <div className="agri-login-leaf agri-login-leaf-two" />
+            <div className="agri-login-glint agri-login-glint-one" />
+            <div className="agri-login-glint agri-login-glint-two" />
+          </div>
           <div className="agri-login-brand w-full max-w-lg">
 
             {/* Logo */}
@@ -205,8 +217,7 @@ export default function LoginPage() {
 
         {/* Login panel */}
         <section className="flex flex-1 items-center justify-center px-5 py-10 sm:px-8 lg:px-12">
-          <div className="agri-login-form-scene w-full max-w-md">
-          <div className="w-full">
+          <div className="w-full max-w-md">
 
             <div className="mb-8">
               <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--light-green)] text-[var(--primary)]">
@@ -354,7 +365,6 @@ export default function LoginPage() {
                 Your account access is determined by the role assigned to it.
               </p>
             </form>
-          </div>
           </div>
         </section>
       </div>

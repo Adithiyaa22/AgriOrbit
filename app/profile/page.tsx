@@ -38,7 +38,7 @@ export default async function ProfilePage() {
 
   return (
     <InternLayout>
-      <main className="agri-profile-scene min-h-screen bg-[var(--background)] text-[var(--text)]">
+      <main className="min-h-screen bg-[var(--background)] text-[var(--text)]">
         <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
           {/* Header */}
           <section className="mb-6">
@@ -66,7 +66,7 @@ export default async function ProfilePage() {
           </section>
 
           {/* Profile Summary */}
-          <section className="agri-3d-card mb-6 overflow-hidden rounded-xl border border-[var(--border)] bg-white shadow-sm">
+          <section className="mb-6 overflow-hidden rounded-xl border border-[var(--border)] bg-white shadow-sm">
             <div className="border-b border-[var(--border)] bg-slate-50 px-5 py-4">
               <p className="text-xs font-semibold uppercase tracking-wide text-[var(--muted)]">
                 Profile
@@ -105,7 +105,7 @@ export default async function ProfilePage() {
           </section>
 
           {/* Account Information */}
-          <section className="agri-3d-card mb-6 overflow-hidden rounded-xl border border-[var(--border)] bg-white shadow-sm">
+          <section className="mb-6 overflow-hidden rounded-xl border border-[var(--border)] bg-white shadow-sm">
             <div className="border-b border-[var(--border)] px-5 py-4">
               <h2 className="font-semibold">
                 Account Information
@@ -118,7 +118,7 @@ export default async function ProfilePage() {
 
             <div className="grid gap-4 p-5 sm:grid-cols-2 sm:p-6">
               {/* Full Name */}
-              <div className="agri-3d-card rounded-lg border border-[var(--border)] bg-white p-4">
+              <div className="rounded-lg border border-[var(--border)] bg-white p-4">
                 <div className="flex items-center gap-2 text-[var(--primary)]">
                   <UserRound size={17} />
 
@@ -133,7 +133,7 @@ export default async function ProfilePage() {
               </div>
 
               {/* Employee Code */}
-              <div className="agri-3d-card rounded-lg border border-[var(--border)] bg-white p-4">
+              <div className="rounded-lg border border-[var(--border)] bg-white p-4">
                 <div className="flex items-center gap-2 text-[var(--primary)]">
                   <BadgeCheck size={17} />
 
@@ -148,7 +148,7 @@ export default async function ProfilePage() {
               </div>
 
               {/* Email */}
-              <div className="agri-3d-card rounded-lg border border-[var(--border)] bg-white p-4">
+              <div className="rounded-lg border border-[var(--border)] bg-white p-4">
                 <div className="flex items-center gap-2 text-[var(--primary)]">
                   <AtSign size={17} />
 
@@ -163,7 +163,7 @@ export default async function ProfilePage() {
               </div>
 
               {/* Role */}
-              <div className="agri-3d-card rounded-lg border border-[var(--border)] bg-white p-4">
+              <div className="rounded-lg border border-[var(--border)] bg-white p-4">
                 <div className="flex items-center gap-2 text-[var(--primary)]">
                   <ShieldCheck size={17} />
 
@@ -178,7 +178,7 @@ export default async function ProfilePage() {
               </div>
 
               {/* Account Status */}
-              <div className="agri-3d-card rounded-lg border border-[var(--border)] bg-white p-4">
+              <div className="rounded-lg border border-[var(--border)] bg-white p-4">
                 <div className="flex items-center gap-2 text-[var(--primary)]">
                   <BadgeCheck size={17} />
 
@@ -193,7 +193,7 @@ export default async function ProfilePage() {
               </div>
 
               {/* Joined Date */}
-              <div className="agri-3d-card rounded-lg border border-[var(--border)] bg-white p-4">
+              <div className="rounded-lg border border-[var(--border)] bg-white p-4">
                 <div className="flex items-center gap-2 text-[var(--primary)]">
                   <CalendarDays size={17} />
 
@@ -210,7 +210,7 @@ export default async function ProfilePage() {
           </section>
 
           {/* Security */}
-          <section className="agri-3d-card mb-6 overflow-hidden rounded-xl border border-[var(--border)] bg-white shadow-sm">
+          <section className="mb-6 overflow-hidden rounded-xl border border-[var(--border)] bg-white shadow-sm">
             <div className="border-b border-[var(--border)] px-5 py-4">
               <h2 className="font-semibold">
                 Security

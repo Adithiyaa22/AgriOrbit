@@ -40,7 +40,7 @@ const features = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#f6faf7] text-slate-800">
+    <main className="agri-home relative min-h-screen overflow-hidden bg-[#f6faf7] text-slate-800">
       <div className="absolute inset-x-0 top-0 -z-0 h-[620px] bg-[radial-gradient(circle_at_50%_0%,rgba(46,125,50,0.13),transparent_62%)]" />
       <div className="absolute -left-32 top-40 -z-0 h-72 w-72 rounded-full bg-emerald-100/50 blur-3xl" />
       <div className="absolute -right-32 top-72 -z-0 h-80 w-80 rounded-full bg-lime-100/50 blur-3xl" />
@@ -65,8 +65,18 @@ export default function Home() {
           </Link>
         </header>
 
-        <section className="relative pt-14 text-center sm:pt-20 lg:pt-24">
-          <div className="agri-hero-orbit agri-hero-3d" aria-hidden="true">
+        <section className="agri-home-hero relative pt-14 text-center sm:pt-20 lg:pt-24">
+          <div className="agri-home-scenery" aria-hidden="true">
+            <div className="agri-scenery-sun" />
+            <div className="agri-scenery-orbit agri-scenery-orbit-one" />
+            <div className="agri-scenery-orbit agri-scenery-orbit-two" />
+            <div className="agri-fieldscape agri-fieldscape-left"><span /><span /><span /><span /></div>
+            <div className="agri-fieldscape agri-fieldscape-right"><span /><span /><span /><span /></div>
+            <div className="agri-scenery-particle agri-scenery-particle-one" />
+            <div className="agri-scenery-particle agri-scenery-particle-two" />
+            <div className="agri-scenery-particle agri-scenery-particle-three" />
+          </div>
+          <div className="agri-hero-orbit" aria-hidden="true">
             <div className="agri-orbit-ring agri-orbit-ring-one" />
             <div className="agri-orbit-ring agri-orbit-ring-two" />
             <div className="agri-orbit-ring agri-orbit-ring-three" />
@@ -117,7 +127,7 @@ export default function Home() {
           <div className="agri-field-line agri-field-line-c" />
         </div>
 
-        <section className="agri-3d-card agri-preview-scene mx-auto mt-3 max-w-6xl sm:mt-5 lg:mt-8" aria-label="AgriOrbit application preview">
+        <section className="agri-preview-scene mx-auto mt-3 max-w-6xl sm:mt-5 lg:mt-8" aria-label="AgriOrbit application preview">
           <div className="agri-preview-shell rounded-[28px] bg-slate-950 p-2 shadow-[0_30px_80px_rgba(15,23,42,0.20)] ring-1 ring-slate-900/10 sm:p-3">
             <div className="overflow-hidden rounded-[22px] border border-white/10 bg-white">
               <div className="flex items-center justify-between bg-slate-900 px-4 py-3 text-xs text-slate-300 sm:px-5">
