@@ -57,11 +57,6 @@ export default function NewSurveyPage() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const requestedFarmer = new URLSearchParams(window.location.search).get("farmer");
-    if (requestedFarmer) setFarmerId(requestedFarmer);
-  }, []);
-
-  useEffect(() => {
     let cancelled = false;
 
     async function loadFarmers() {

@@ -380,7 +380,7 @@ export default function AdminFarmersContent() {
 
                       <td className="px-5 py-4 text-right">
                         <Link
-                          href={`/farmers/${farmer.id}`}
+                          href={`/farmers/${farmer.farmer_code}`}
                           className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 transition-colors hover:border-green-200 hover:bg-green-50 hover:text-green-700"
                         >
                           <Eye className="h-3.5 w-3.5" />
@@ -487,7 +487,7 @@ export default function AdminFarmersContent() {
 
                 <div className="mt-4 border-t border-slate-100 pt-4">
                   <Link
-                    href={`/farmers/${farmer.id}`}
+                    href={`/farmers/${farmer.farmer_code}`}
                     className="flex w-full items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition-colors hover:border-green-200 hover:bg-green-50 hover:text-green-700"
                   >
                     <Eye className="h-4 w-4" />
