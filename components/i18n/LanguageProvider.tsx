@@ -377,6 +377,48 @@ const translations: Record<string, string> = {
   "Offline": "ஆஃப்லைன்",
   "Online": "ஆன்லைன்",
 
+  // Landing page — exact visible copy
+  "Sign In": "உள்நுழைக",
+  "Empower field surveys anywhere —": "எங்கிருந்தும் வயல் கணக்கெடுப்புகளை எளிதாக மேற்கொள்ளுங்கள் —",
+  "online or offline.": "இணையத்துடன் அல்லது இணையமின்றி.",
+  "Collect farmer profiles, register agricultural fields, and submit surveys even when connectivity is unreliable. Data can be synchronized when the connection returns.": "விவசாயி விவரங்களைச் சேகரித்து, வேளாண் வயல்களைப் பதிவு செய்து, இணைய இணைப்பு நிலையற்றிருந்தாலும் கணக்கெடுப்புகளைச் சமர்ப்பிக்கவும். இணைப்பு மீண்டும் கிடைக்கும்போது தரவை ஒத்திசைக்கலாம்.",
+  "Install App": "செயலியை நிறுவு",
+  "Continue in Browser": "உலாவியில் தொடர்க",
+  "Android-friendly PWA": "ஆண்ட்ராய்டுக்கு ஏற்ற PWA",
+  "Online + offline workflow": "ஆன்லைன் + ஆஃப்லைன் செயல்முறை",
+  "Role-based access": "பங்கு அடிப்படையிலான அணுகல்",
+  "FIELD DATA COLLECTION": "வயல் தரவு சேகரிப்பு",
+  "FIELD DATA": "வயல் தரவு",
+  "Field Survey Dashboard": "வயல் கணக்கெடுப்பு டாஷ்போர்டு",
+  "Farmer records, registered fields and survey collection": "விவசாயி பதிவுகள், பதிவு செய்யப்பட்ட வயல்கள் மற்றும் கணக்கெடுப்பு சேகரிப்பு",
+  "Offline ready": "ஆஃப்லைனில் செயல்படத் தயார்",
+  "Registered": "பதிவு செய்யப்பட்டது",
+  "Mapped": "வரைபடத்தில் குறிக்கப்பட்டது",
+  "Recorded": "பதிவு செய்யப்பட்டது",
+  "Collected": "சேகரிக்கப்பட்டது",
+  "Recent field activity": "சமீபத்திய வயல் செயல்பாடு",
+  "Latest collection activity from the field team": "வயல் குழுவின் சமீபத்திய தரவு சேகரிப்பு செயல்பாடு",
+  "SYNCED": "ஒத்திசைக்கப்பட்டது",
+  "Farmer profile updated": "விவசாயி சுயவிவரம் புதுப்பிக்கப்பட்டது",
+  "New field registered": "புதிய வயல் பதிவு செய்யப்பட்டது",
+  "Survey submitted": "கணக்கெடுப்பு சமர்ப்பிக்கப்பட்டது",
+  "Field collection workflow": "வயல் தரவு சேகரிப்பு செயல்முறை",
+  "Today": "இன்று",
+  "Collection status": "சேகரிப்பு நிலை",
+  "Stay productive even with limited connectivity.": "குறைந்த இணைய இணைப்பிலும் தொடர்ந்து செயல்படுங்கள்.",
+  "Your field team can continue collecting and synchronize when connectivity returns.": "இணைப்பு மீண்டும் கிடைக்கும்போது உங்கள் வயல் குழு தரவைத் தொடர்ந்து சேகரித்து ஒத்திசைக்கலாம்.",
+  "Designed for real-world data collection.": "நிஜ உலகத் தரவு சேகரிப்பிற்காக வடிவமைக்கப்பட்டது.",
+  "A focused workflow for capturing reliable farmer, field and survey information without making the field process complicated.": "வயல் பணிகளை சிக்கலாக்காமல், நம்பகமான விவசாயி, வயல் மற்றும் கணக்கெடுப்பு தகவல்களைச் சேகரிக்க வடிவமைக்கப்பட்ட எளிய செயல்முறை.",
+  "Farmer Profiles": "விவசாயி சுயவிவரங்கள்",
+  "Capture structured farmer information and keep records organized in one place.": "விவசாயி தகவல்களை ஒழுங்குபடுத்தப்பட்ட முறையில் சேகரித்து ஒரே இடத்தில் பராமரிக்கவும்.",
+  "Field Data": "வயல் தரவு",
+  "Register agricultural fields and keep field-level information connected to farmers.": "வேளாண் வயல்களைப் பதிவு செய்து, வயல் விவரங்களை விவசாயிகளுடன் இணைக்கவும்.",
+  "Offline Surveys": "ஆஃப்லைன் கணக்கெடுப்புகள்",
+  "Continue collecting survey data when network connectivity is unavailable.": "இணைய இணைப்பு இல்லாதபோதும் கணக்கெடுப்புத் தரவைத் தொடர்ந்து சேகரிக்கவும்.",
+  "Secure Sync": "பாதுகாப்பான ஒத்திசைவு",
+  "Sync collected field data when the connection returns without changing the existing workflow.": "இணைப்பு மீண்டும் கிடைக்கும்போது சேகரிக்கப்பட்ட வயல் தரவை பாதுகாப்பாக ஒத்திசைக்கவும்.",
+  "AgriOrbit application preview": "AgriOrbit செயலி முன்னோட்டம்",
+
   // Dashboard / common screen copy
   "Welcome back": "மீண்டும் வரவேற்கிறோம்",
   "Welcome back,": "மீண்டும் வரவேற்கிறோம்,",
@@ -391,15 +433,6 @@ const translations: Record<string, string> = {
   "Register a new farmer": "புதிய விவசாயியைப் பதிவு செய்யவும்",
   "Register a farmer's field": "விவசாயியின் வயலைப் பதிவு செய்யவும்",
   "Continue incomplete surveys": "முடிக்கப்படாத கணக்கெடுப்புகளைத் தொடரவும்",
-  "Farmer records, registered fields and survey collection": "விவசாயி பதிவுகள், பதிவு செய்யப்பட்ட வயல்கள் மற்றும் கணக்கெடுப்பு சேகரிப்பு",
-  "Field Survey Dashboard": "வயல் கணக்கெடுப்பு டாஷ்போர்டு",
-  "Latest collection activity from the field team": "வயல் குழுவின் சமீபத்திய தரவு சேகரிப்பு செயல்பாடு",
-  "Stay productive even with limited connectivity.": "குறைந்த இணைய இணைப்பிலும் தொடர்ந்து செயல்படுங்கள்.",
-  "Your field team can continue collecting and synchronize when connectivity returns.": "இணைப்பு திரும்பியதும் உங்கள் வயல் குழு தொடர்ந்து தரவைச் சேகரித்து ஒத்திசைக்கலாம்.",
-  "Designed for real-world data collection.": "நிஜ உலக தரவு சேகரிப்பிற்காக வடிவமைக்கப்பட்டது.",
-  "Field collection workflow": "வயல் தரவு சேகரிப்பு பணிப்பாய்வு",
-  "Collection status": "சேகரிப்பு நிலை",
-  "Recent field activity": "சமீபத்திய வயல் செயல்பாடு",
   "Survey Progress": "கணக்கெடுப்பு முன்னேற்றம்",
   "Survey progress": "கணக்கெடுப்பு முன்னேற்றம்",
   "Back to Dashboard": "டாஷ்போர்டுக்குத் திரும்பு",
@@ -423,7 +456,6 @@ const translations: Record<string, string> = {
   "No offline drafts": "ஆஃப்லைன் வரைவுகள் இல்லை",
   "Syncing...": "ஒத்திசைக்கப்படுகிறது...",
   "Sync": "ஒத்திசை",
-  "Survey submitted": "கணக்கெடுப்பு சமர்ப்பிக்கப்பட்டது",
   "Saved sections": "சேமிக்கப்பட்ட பிரிவுகள்",
   "Total Surveys": "மொத்த கணக்கெடுப்புகள்",
   "Total Fields": "மொத்த வயல்கள்",
@@ -498,9 +530,7 @@ const translations: Record<string, string> = {
   "Field Location": "வயல் இருப்பிடம்",
   "Land Ownership": "நில உரிமை",
   "Uploaded": "பதிவேற்றப்பட்டது",
-  "View": "பார்",
   "Total": "மொத்தம்",
-  "Today": "இன்று",
   "Entity": "உருப்படி",
   "Previous": "முந்தையது",
   "Mixed": "கலப்பு",
@@ -508,21 +538,67 @@ const translations: Record<string, string> = {
   "Upland": "மேட்டுநிலம்",
   "Garden land": "தோட்ட நிலம்",
 
+  // Field visit metadata and labels missed by the first bilingual pass
+  "GPS captured": "GPS பதிவு செய்யப்பட்டது",
+  "GPS captured *": "GPS பதிவு செய்யப்பட்டது *",
+  "GPS Captured *": "GPS பதிவு செய்யப்பட்டது *",
+  "GPS Status": "GPS நிலை",
+  "Internet available": "இணைய வசதி உள்ளதா",
+  "Internet Available": "இணைய வசதி உள்ளதா",
+  "Internet available *": "இணைய வசதி உள்ளதா *",
+  "Internet Available *": "இணைய வசதி உள்ளதா *",
+  "Automatically recorded": "தானாகப் பதிவு செய்யப்பட்டது",
+  "e.g. 11.0168": "எ.கா. 11.0168",
+  "e.g. 76.9558": "எ.கா. 76.9558",
+  "Visit Time": "வருகை நேரம்",
+  "GPS coordinates": "GPS ஆயத்தொலைவுகள்",
+  "Location accuracy": "இருப்பிடத் துல்லியம்",
+  "Location captured": "இருப்பிடம் பதிவு செய்யப்பட்டது",
+  "Unable to capture GPS location.": "GPS இருப்பிடத்தைப் பதிவு செய்ய முடியவில்லை.",
+  "Please enable location permission and try again.": "இருப்பிட அனுமதியை இயக்கி மீண்டும் முயற்சிக்கவும்.",
+  "Required": "கட்டாயம்",
+  "Required field": "கட்டாயப் புலம்",
+  "This field is required.": "இந்தப் புலம் கட்டாயமானது.",
+  "Please select an option.": "ஒரு விருப்பத்தைத் தேர்ந்தெடுக்கவும்.",
+  "Please enter a valid value.": "சரியான மதிப்பை உள்ளிடவும்.",
+  "Network status": "இணைய நிலை",
+  "Internet connection": "இணைய இணைப்பு",
+  "Connection available": "இணைப்பு உள்ளது",
+  "Connection unavailable": "இணைப்பு இல்லை",
+  "Online status": "ஆன்லைன் நிலை",
+  "Device information": "சாதனத் தகவல்",
+  "Survey visit details": "கணக்கெடுப்பு வருகை விவரங்கள்",
+  "Enumerator details": "கணக்கெடுப்பாளர் விவரங்கள்",
+  "Current location": "தற்போதைய இருப்பிடம்",
+  "Latitude (GPS)": "அட்சரேகை (GPS)",
+  "Longitude (GPS)": "தீர்க்கரேகை (GPS)",
+  "Not available": "கிடைக்கவில்லை",
+  "Not provided": "வழங்கப்படவில்லை",
+  "Please wait...": "காத்திருக்கவும்...",
+  "Try again": "மீண்டும் முயற்சிக்கவும்",
+  "Retry": "மீண்டும் முயற்சி",
+  "Go back": "பின்னால் செல்லவும்",
+  "Back to Home": "முகப்புக்குத் திரும்பு",
+  "Welcome to AgriOrbit": "AgriOrbit-க்கு வரவேற்கிறோம்",
+  "Secure field data collection": "பாதுகாப்பான வயல் தரவு சேகரிப்பு",
+  "Your workspace": "உங்கள் பணியிடம்",
+  "Account details": "கணக்கு விவரங்கள்",
+  "Employee ID": "பணியாளர் அடையாள எண்",
+  "Role": "பங்கு",
+  "Created at": "உருவாக்கப்பட்ட தேதி",
+  "Last updated": "கடைசியாகப் புதுப்பிக்கப்பட்டது",
+  "Field Intern": "வயல் இன்டர்ன்",
+  "intern": "இன்டர்ன்",
+  "admin": "நிர்வாகி",
+  "super admin": "முதன்மை நிர்வாகி",
+  "super_admin": "முதன்மை நிர்வாகி",
+  "Change password": "கடவுச்சொல்லை மாற்று",
+  "Current password": "தற்போதைய கடவுச்சொல்",
+  "Password updated successfully.": "கடவுச்சொல் வெற்றிகரமாகப் புதுப்பிக்கப்பட்டது.",
+  "Something went wrong. Please try again.": "ஏதோ தவறு ஏற்பட்டது. மீண்டும் முயற்சிக்கவும்.",
+
   // Extended global UI coverage
-  "FIELD DATA COLLECTION": "வயல் தரவு சேகரிப்பு",
-  "Sign In": "உள்நுழைக",
-  "Empower field surveys anywhere —": "எங்கும் வயல் கணக்கெடுப்புகளைச் செய்யுங்கள் —",
-  "online or offline.": "ஆன்லைனிலோ ஆஃப்லைனிலோ.",
-  "Collect farmer profiles, register agricultural fields, and submit surveys even when connectivity is unreliable. Data can be synchronized when the connection returns.": "இணைய இணைப்பு நம்பகமற்ற நிலையிலும் விவசாயி சுயவிவரங்களைச் சேகரித்து, வேளாண் வயல்களைப் பதிவு செய்து, கணக்கெடுப்புகளைச் சமர்ப்பிக்கலாம். இணைப்பு திரும்பியதும் தரவை ஒத்திசைக்கலாம்.",
-  "Continue in Browser": "உலாவியில் தொடர்க",
-  "Android-friendly PWA": "Android-க்கு ஏற்ற PWA",
-  "Online + offline workflow": "ஆன்லைன் + ஆஃப்லைன் பணிப்பாய்வு",
-  "Role-based access": "பங்கு அடிப்படையிலான அணுகல்",
   "agriorbit · field collection": "AgriOrbit · வயல் தரவு சேகரிப்பு",
-  "FIELD DATA": "வயல் தரவு",
-  "Offline ready": "ஆஃப்லைனுக்கு தயார்",
-  "SYNCED": "ஒத்திசைக்கப்பட்டது",
-  "A focused workflow for capturing reliable farmer, field and survey information without making the field process complicated.": "வயல் செயல்முறையை சிக்கலாக்காமல் நம்பகமான விவசாயி, வயல் மற்றும் கணக்கெடுப்பு தகவல்களைச் சேகரிக்க வடிவமைக்கப்பட்ட பணிப்பாய்வு.",
   "AgriOrbit · Farmer & Field Data Collection Platform": "AgriOrbit · விவசாயி மற்றும் வயல் தரவு சேகரிப்பு தளம்",
   "Intern Dashboard": "இன்டர்ன் டாஷ்போர்டு",
   "Please refresh the page and try again.": "பக்கத்தைப் புதுப்பித்து மீண்டும் முயற்சிக்கவும்.",
@@ -833,6 +909,282 @@ const translations: Record<string, string> = {
   "Record whether the farmer is willing to share their farming knowledge and experience.": "விவசாயி தனது விவசாய அறிவு மற்றும் அனுபவத்தைப் பகிர விரும்புகிறாரா என்பதைப் பதிவு செய்யவும்.",
   "Record whether the farmer is interested in each type of information or support.": "ஒவ்வொரு வகையான தகவல் அல்லது ஆதரவிலும் விவசாயி ஆர்வமாக உள்ளாரா என்பதைப் பதிவு செய்யவும்.",
 
+  // Additional interface, field-visit, survey and system copy. Keep keys
+  // as complete English phrases so the global translator can resolve text
+  // nodes rendered by server components as well as client components.
+  "GPS captured successfully": "GPS வெற்றிகரமாகப் பதிவு செய்யப்பட்டது",
+  "GPS capture failed": "GPS பதிவு தோல்வியடைந்தது",
+  "Internet connection available": "இணைய இணைப்பு உள்ளது",
+  "Internet connection not available": "இணைய இணைப்பு இல்லை",
+  "Please select": "தயவுசெய்து தேர்ந்தெடுக்கவும்",
+  "Please enter": "தயவுசெய்து உள்ளிடவும்",
+  "This field is required": "இந்தப் புலம் கட்டாயமானது",
+  "Optional": "விருப்பத்தேர்வு",
+  "Choose file": "கோப்பைத் தேர்ந்தெடுக்கவும்",
+  "Upload photo": "புகைப்படத்தைப் பதிவேற்றவும்",
+  "Take photo": "புகைப்படம் எடுக்கவும்",
+  "No file chosen": "கோப்பு தேர்ந்தெடுக்கப்படவில்லை",
+  "Save changes": "மாற்றங்களைச் சேமிக்கவும்",
+  "Update profile": "சுயவிவரத்தைப் புதுப்பிக்கவும்",
+  "Personal Information": "தனிப்பட்ட தகவல்கள்",
+  "Contact Information": "தொடர்பு தகவல்கள்",
+  "Account Details": "கணக்கு விவரங்கள்",
+  "Phone Number": "தொலைபேசி எண்",
+  "Village Name": "கிராமத்தின் பெயர்",
+  "District Name": "மாவட்டத்தின் பெயர்",
+  "Taluk": "வட்டம்",
+  "Block": "ஊராட்சி ஒன்றியம்",
+  "Pincode": "அஞ்சல் குறியீடு",
+  "Survey Details": "கணக்கெடுப்பு விவரங்கள்",
+  "Farmer Details": "விவசாயி விவரங்கள்",
+  "Visit Details": "வருகை விவரங்கள்",
+  "Additional Information": "கூடுதல் தகவல்கள்",
+  "Next": "அடுத்தது",
+  "Next Section": "அடுத்த பகுதி",
+  "Previous Section": "முந்தைய பகுதி",
+  "Review & Submit": "மதிப்பாய்வு செய்து சமர்ப்பிக்கவும்",
+  "Are you sure?": "நிச்சயமாகவா?",
+  "Unable to load data.": "தரவை ஏற்ற முடியவில்லை.",
+  "Unable to save changes.": "மாற்றங்களைச் சேமிக்க முடியவில்லை.",
+  "Changes saved successfully.": "மாற்றங்கள் வெற்றிகரமாகச் சேமிக்கப்பட்டன.",
+  "No results found.": "முடிவுகள் எதுவும் இல்லை.",
+  "Showing": "காட்டப்படுகிறது",
+  "of": "இல்",
+  "Results": "முடிவுகள்",
+  "Download": "பதிவிறக்கு",
+  "Upload": "பதிவேற்று",
+  "View Details": "விவரங்களைக் காண்க",
+  "Created At": "உருவாக்கப்பட்ட நேரம்",
+  "Updated At": "புதுப்பிக்கப்பட்ட நேரம்",
+  "Last Updated": "கடைசியாகப் புதுப்பிக்கப்பட்டது",
+  "Start Date": "தொடக்க தேதி",
+  "End Date": "முடிவு தேதி",
+  "From Date": "தொடக்க தேதி",
+  "To Date": "முடிவு தேதி",
+  "All Roles": "அனைத்து பங்குகளும்",
+  "All Status": "அனைத்து நிலைகளும்",
+  "Intern account": "இன்டர்ன் கணக்கு",
+  "Admin account": "நிர்வாகி கணக்கு",
+  "Super Admin account": "முதன்மை நிர்வாகி கணக்கு",
+
+  // Remaining survey-page prompts, validation, offline and list-screen copy.
+  "Please open a fresh password-reset link from your email. The link may have expired or already been used.": "உங்கள் மின்னஞ்சலில் வந்த புதிய கடவுச்சொல் மீட்டமைப்பு இணைப்பைத் திறக்கவும். அந்த இணைப்பு காலாவதியாகியிருக்கலாம் அல்லது ஏற்கனவே பயன்படுத்தப்பட்டிருக்கலாம்.",
+  "Your password must contain at least 8 characters.": "உங்கள் கடவுச்சொல்லில் குறைந்தது 8 எழுத்துகள் இருக்க வேண்டும்.",
+  "The passwords do not match.": "கடவுச்சொற்கள் பொருந்தவில்லை.",
+  "Password updated successfully. Redirecting to login...": "கடவுச்சொல் வெற்றிகரமாகப் புதுப்பிக்கப்பட்டது. உள்நுழைவு பக்கத்திற்குச் செல்கிறது...",
+  "Unable to update your password. Please try again.": "உங்கள் கடவுச்சொல்லைப் புதுப்பிக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்.",
+  "At least 8 characters": "குறைந்தது 8 எழுத்துகள்",
+  "Re-enter your new password": "புதிய கடவுச்சொல்லை மீண்டும் உள்ளிடவும்",
+  "Something went wrong while loading fields.": "வயல் விவரங்களை ஏற்றும்போது பிழை ஏற்பட்டது.",
+  "Search by field name, field ID, farmer, village or district...": "வயல் பெயர், வயல் அடையாள எண், விவசாயி, கிராமம் அல்லது மாவட்டம் மூலம் தேடவும்...",
+  "Sync failed": "ஒத்திசைவு தோல்வியடைந்தது",
+  "Saved offline": "ஆஃப்லைனில் சேமிக்கப்பட்டது",
+  "Delete this offline draft from this device?": "இந்தச் சாதனத்திலிருந்து ஆஃப்லைன் வரைவினை நீக்கவா?",
+  "If an account exists for this email, password-reset instructions will be sent. Check your inbox and spam folder.": "இந்த மின்னஞ்சலுக்கு கணக்கு இருந்தால், கடவுச்சொல் மீட்டமைப்பு வழிமுறைகள் அனுப்பப்படும். உங்கள் இன்பாக்ஸ் மற்றும் ஸ்பேம் கோப்புறையைப் பார்க்கவும்.",
+  "Something went wrong. Please try again later.": "ஏதோ தவறு ஏற்பட்டது. பின்னர் மீண்டும் முயற்சிக்கவும்.",
+  "Send reset instructions": "மீட்டமைப்பு வழிமுறைகளை அனுப்பவும்",
+  "No mobile number": "கைபேசி எண் இல்லை",
+  "Try searching with a different name, mobile number, village, district or ID.": "வேறு பெயர், கைபேசி எண், கிராமம், மாவட்டம் அல்லது அடையாள எண்ணைப் பயன்படுத்தித் தேடவும்.",
+  "No farmers have been registered yet.": "இதுவரை விவசாயிகள் எவரும் பதிவு செய்யப்படவில்லை.",
+  "Search by farmer name, mobile, village, district or ID...": "விவசாயியின் பெயர், கைபேசி எண், கிராமம், மாவட்டம் அல்லது அடையாள எண் மூலம் தேடவும்...",
+  "Unable to load surveys.": "கணக்கெடுப்புகளை ஏற்ற முடியவில்லை.",
+  "Search survey, farmer, field or enumerator...": "கணக்கெடுப்பு, விவசாயி, வயல் அல்லது கணக்கெடுப்பாளர் மூலம் தேடவும்...",
+  "No surveys found": "கணக்கெடுப்புகள் எதுவும் இல்லை",
+  "No matching surveys": "பொருந்தும் கணக்கெடுப்புகள் எதுவும் இல்லை",
+  "Survey records will appear here after surveys are created.": "கணக்கெடுப்புகள் உருவாக்கப்பட்ட பிறகு அவற்றின் பதிவுகள் இங்கே தோன்றும்.",
+  "Try changing your search or status filter.": "தேடல் அல்லது நிலை வடிகட்டியை மாற்றிப் பார்க்கவும்.",
+  "Unnamed Field": "பெயரிடப்படாத வயல்",
+  "No farmer data is available offline. Open this screen while connected once to cache the farmer list.": "ஆஃப்லைனில் விவசாயி தரவு கிடைக்கவில்லை. விவசாயிகள் பட்டியலைச் சேமிக்க, இணைய இணைப்புடன் இந்தப் பக்கத்தை ஒருமுறை திறக்கவும்.",
+  "Using the farmers saved on this device.": "இந்தச் சாதனத்தில் சேமிக்கப்பட்ட விவசாயிகள் பட்டியல் பயன்படுத்தப்படுகிறது.",
+  "Unable to load farmers.": "விவசாயிகளை ஏற்ற முடியவில்லை.",
+  "No fields for this farmer are available offline. Open the farmer's field list while connected once to cache them.": "இந்த விவசாயிக்கான வயல் விவரங்கள் ஆஃப்லைனில் கிடைக்கவில்லை. அவற்றைச் சேமிக்க இணைய இணைப்புடன் வயல் பட்டியலை ஒருமுறை திறக்கவும்.",
+  "Using the fields saved on this device.": "இந்தச் சாதனத்தில் சேமிக்கப்பட்ட வயல் பட்டியல் பயன்படுத்தப்படுகிறது.",
+  "Unable to load fields for this farmer.": "இந்த விவசாயிக்கான வயல்களை ஏற்ற முடியவில்லை.",
+  "Please select a farmer.": "தயவுசெய்து ஒரு விவசாயியைத் தேர்ந்தெடுக்கவும்.",
+  "Please select a field.": "தயவுசெய்து ஒரு வயலைத் தேர்ந்தெடுக்கவும்.",
+  "Your session has expired. Please log in again.": "உங்கள் அமர்வு காலாவதியாகிவிட்டது. மீண்டும் உள்நுழையவும்.",
+  "Unable to start the survey.": "கணக்கெடுப்பைத் தொடங்க முடியவில்லை.",
+  "No cached farmers": "சேமிக்கப்பட்ட விவசாயிகள் இல்லை",
+  "Select farmer": "விவசாயியைத் தேர்ந்தெடுக்கவும்",
+  "Select a farmer first": "முதலில் ஒரு விவசாயியைத் தேர்ந்தெடுக்கவும்",
+  "Select field": "வயலைத் தேர்ந்தெடுக்கவும்",
+  "Could not load soil information.": "மண் தகவல்களை ஏற்ற முடியவில்லை.",
+  "Field information is missing. Please go back to Section C.": "வயல் தகவல்கள் இல்லை. பகுதி C-க்குத் திரும்பவும்.",
+  "Offline Survey": "ஆஃப்லைன் கணக்கெடுப்பு",
+  "Could not save soil information.": "மண் தகவல்களைச் சேமிக்க முடியவில்லை.",
+  "Enter soil type": "மண் வகையை உள்ளிடவும்",
+  "Enter soil colour": "மண் நிறத்தை உள்ளிடவும்",
+  "e.g. Farmyard manure, compost": "எ.கா. தொழு உரம், மக்கிய உரம்",
+  "Describe any recurring soil-related problems...": "மீண்டும் ஏற்படும் மண் தொடர்பான பிரச்சினைகளை விவரிக்கவும்...",
+  "Save Offline & Continue": "ஆஃப்லைனில் சேமித்து தொடரவும்",
+  "The field linked to this survey could not be found.": "இந்தக் கணக்கெடுப்புடன் இணைக்கப்பட்ட வயலைக் கண்டறிய முடியவில்லை.",
+  "Survey information is unavailable offline. Please open this survey while connected once before continuing offline.": "ஆஃப்லைனில் கணக்கெடுப்பு தகவல்கள் கிடைக்கவில்லை. ஆஃப்லைனில் தொடர்வதற்கு முன் இணைய இணைப்புடன் இந்தக் கணக்கெடுப்பை ஒருமுறை திறக்கவும்.",
+  "Location is not supported by this browser.": "இந்த உலாவியில் இருப்பிட வசதி ஆதரிக்கப்படவில்லை.",
+  "Current location captured successfully.": "தற்போதைய இருப்பிடம் வெற்றிகரமாகப் பதிவு செய்யப்பட்டது.",
+  "Location permission was denied. Please allow location access and try again.": "இருப்பிட அனுமதி மறுக்கப்பட்டது. இருப்பிட அணுகலை அனுமதித்து மீண்டும் முயற்சிக்கவும்.",
+  "Your current location could not be determined.": "உங்கள் தற்போதைய இருப்பிடத்தைக் கண்டறிய முடியவில்லை.",
+  "Location request timed out. Please try again.": "இருப்பிடக் கோரிக்கைக்கான நேரம் முடிந்தது. மீண்டும் முயற்சிக்கவும்.",
+  "Unable to capture your current location.": "உங்கள் தற்போதைய இருப்பிடத்தைப் பதிவு செய்ய முடியவில்லை.",
+  "Field name is required.": "வயல் பெயர் கட்டாயம்.",
+  "Field information is missing.": "வயல் தகவல்கள் இல்லை.",
+  "Survey information is missing.": "கணக்கெடுப்பு தகவல்கள் இல்லை.",
+  "Unable to save field details.": "வயல் விவரங்களைச் சேமிக்க முடியவில்லை.",
+  "Field information could not be loaded.": "வயல் தகவல்களை ஏற்ற முடியவில்லை.",
+  "Enter area": "பரப்பளவை உள்ளிடவும்",
+  "Any notable features of the field...": "வயலின் குறிப்பிடத்தக்க அம்சங்கள் ஏதேனும் உள்ளனவா...",
+  "Field overview photo": "வயலின் மேலோட்டப் புகைப்படம்",
+  "Capture a clear photo showing the overall field.": "முழு வயலையும் தெளிவாகக் காட்டும் புகைப்படம் எடுக்கவும்.",
+  "This survey was restored from the saved offline draft.": "சேமிக்கப்பட்ட ஆஃப்லைன் வரைவிலிருந்து இந்தக் கணக்கெடுப்பு மீட்டெடுக்கப்பட்டது.",
+  "Saved offline changes have been restored.": "ஆஃப்லைனில் சேமிக்கப்பட்ட மாற்றங்கள் மீட்டெடுக்கப்பட்டன.",
+  "Unable to capture GPS. Please allow location access and try again.": "GPS-ஐப் பதிவு செய்ய முடியவில்லை. இருப்பிட அணுகலை அனுமதித்து மீண்டும் முயற்சிக்கவும்.",
+  "Please select whether GPS was captured.": "GPS பதிவு செய்யப்பட்டதா என்பதைத் தேர்ந்தெடுக்கவும்.",
+  "GPS is marked as captured, but latitude and longitude are missing. Please capture GPS again.": "GPS பதிவு செய்யப்பட்டதாகக் குறிக்கப்பட்டுள்ளது; ஆனால் அட்சரேகை மற்றும் தீர்க்கரேகை இல்லை. GPS-ஐ மீண்டும் பதிவு செய்யவும்.",
+  "Please select whether internet was available.": "இணைய வசதி இருந்ததா என்பதைத் தேர்ந்தெடுக்கவும்.",
+  "Please select who provided the information.": "தகவலை வழங்கியவர் யார் என்பதைத் தேர்ந்தெடுக்கவும்.",
+  "Section A saved on this device. It will sync automatically when internet returns.": "பகுதி A இந்தச் சாதனத்தில் சேமிக்கப்பட்டது. இணையம் மீண்டும் கிடைக்கும்போது தானாகவே ஒத்திசைக்கப்படும்.",
+  "Section A was saved on this device. It will retry syncing when the connection is available.": "பகுதி A இந்தச் சாதனத்தில் சேமிக்கப்பட்டது. இணைப்பு கிடைக்கும்போது மீண்டும் ஒத்திசைக்க முயற்சிக்கும்.",
+  "Section A was saved locally and will be synced later.": "பகுதி A உள்ளூரில் சேமிக்கப்பட்டது; பின்னர் ஒத்திசைக்கப்படும்.",
+  "Unable to save Section A. Please try again.": "பகுதி A-ஐச் சேமிக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்.",
+  "Unable to save the draft. Please try again.": "வரைவைச் சேமிக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்.",
+  "Will be recorded when saved": "சேமிக்கும்போது பதிவு செய்யப்படும்",
+  "Record the farmer's experience": "விவசாயியின் அனுபவத்தைப் பதிவு செய்யவும்",
+  "Record the farmer's answer": "விவசாயியின் பதிலைப் பதிவு செய்யவும்",
+  "Describe the successful practice": "வெற்றிகரமான நடைமுறையை விவரிக்கவும்",
+  "Record traditional or local knowledge": "பாரம்பரிய அல்லது உள்ளூர் அறிவைப் பதிவு செய்யவும்",
+  "Record the farmer's advice": "விவசாயியின் ஆலோசனையைப் பதிவு செய்யவும்",
+  "Record the farmer's reflection": "விவசாயியின் கருத்தைப் பதிவு செய்யவும்",
+  "Farmer Knowledge Voice Note": "விவசாயி அறிவு குரல் பதிவு",
+  "Could not save crop problem information.": "பயிர் பிரச்சினை தகவல்களைச் சேமிக்க முடியவில்லை.",
+  "What problems is the farmer currently facing?": "விவசாயி தற்போது என்ன பிரச்சினைகளை எதிர்கொள்கிறார்?",
+  "Are there problems that occur repeatedly?": "மீண்டும் மீண்டும் ஏற்படும் பிரச்சினைகள் உள்ளனவா?",
+  "What action was taken?": "என்ன நடவடிக்கை எடுக்கப்பட்டது?",
+  "Describe what the farmer did to address the problem.": "பிரச்சினையைத் தீர்க்க விவசாயி எடுத்த நடவடிக்கையை விவரிக்கவும்.",
+  "Who Helped?": "யார் உதவினார்?",
+  "Did the action work?": "எடுத்த நடவடிக்கை பலனளித்ததா?",
+  "What is the biggest farming challenge?": "விவசாயத்தில் மிகப்பெரிய சவால் எது?",
+  "Problem Photo": "பிரச்சினைப் புகைப்படம்",
+  "Crop Problems Voice Note": "பயிர் பிரச்சினைகள் குரல் பதிவு",
+  "Could not save labour information.": "தொழிலாளர் தகவல்களைச் சேமிக்க முடியவில்லை.",
+  "Describe the difficulty, if any": "ஏதேனும் சிரமம் இருந்தால் விவரிக்கவும்",
+  "Describe the activity": "செயல்பாட்டை விவரிக்கவும்",
+  "Describe the operation": "செயல்முறையை விவரிக்கவும்",
+  "Already use rental equipment": "ஏற்கனவே வாடகை உபகரணங்களைப் பயன்படுத்துகிறோம்",
+  "Labour & Farming Operations Voice Note": "தொழிலாளர் மற்றும் வேளாண் செயல்பாடுகள் குரல் பதிவு",
+  "Could not save water and irrigation information.": "நீர் மற்றும் பாசனத் தகவல்களைச் சேமிக்க முடியவில்லை.",
+  "Open well": "திறந்த கிணறு",
+  "How does water availability change across seasons?": "பருவங்களுக்கு ஏற்ப நீர் கிடைக்கும் நிலை எவ்வாறு மாறுகிறது?",
+  "Biggest Water Difficulty": "மிகப்பெரிய நீர் தொடர்பான சிரமம்",
+  "What is the biggest water-related difficulty?": "நீர் தொடர்பான மிகப்பெரிய சிரமம் எது?",
+  "Groundwater Shortage": "நிலத்தடி நீர் பற்றாக்குறை",
+  "Describe any groundwater shortage or related issue": "நிலத்தடி நீர் பற்றாக்குறை அல்லது தொடர்புடைய பிரச்சினையை விவரிக்கவும்",
+  "Effect of Electricity": "மின்சாரத்தின் தாக்கம்",
+  "How does electricity availability affect irrigation?": "மின்சாரக் கிடைப்புத் தன்மை பாசனத்தை எவ்வாறு பாதிக்கிறது?",
+  "Do you use drip or sprinkler irrigation?": "சொட்டு நீர்ப்பாசனம் அல்லது தெளிப்பு நீர்ப்பாசனத்தைப் பயன்படுத்துகிறீர்களா?",
+  "How effective is it?": "அது எந்த அளவிற்கு பயனுள்ளதாக உள்ளது?",
+  "Traditional or Local Practice": "பாரம்பரிய அல்லது உள்ளூர் நடைமுறை",
+  "Could not save future farmer needs.": "விவசாயியின் எதிர்காலத் தேவைகளைச் சேமிக்க முடியவில்லை.",
+  "Future Farmer Needs Voice Note": "விவசாயியின் எதிர்காலத் தேவைகள் குரல் பதிவு",
+  "Please enter Quantity Sold and Selling Price first.": "முதலில் விற்பனை செய்யப்பட்ட அளவு மற்றும் விற்பனை விலையை உள்ளிடவும்.",
+  "Quantity Sold and Selling Price cannot be negative.": "விற்பனை செய்யப்பட்ட அளவும் விற்பனை விலையும் எதிர்மறையாக இருக்கக்கூடாது.",
+  "Could not save economics information.": "பொருளாதாரத் தகவல்களைச் சேமிக்க முடியவில்லை.",
+  "Enter quantity": "அளவை உள்ளிடவும்",
+  "Enter price": "விலையை உள்ளிடவும்",
+  "Describe the biggest factor affecting income": "வருமானத்தைப் பாதிக்கும் மிகப்பெரிய காரணியை விவரிக்கவும்",
+  "Harvest & Economics Voice Note": "அறுவடை மற்றும் பொருளாதாரம் குரல் பதிவு",
+  "Could not save seed information.": "விதைத் தகவல்களைச் சேமிக்க முடியவில்லை.",
+  "Enter seed name": "விதையின் பெயரை உள்ளிடவும்",
+  "Enter variety": "விதை ரகத்தை உள்ளிடவும்",
+  "Enter brand": "பிராண்டை உள்ளிடவும்",
+  "Enter supplier or dealer": "வழங்குநர் அல்லது விற்பனையாளரை உள்ளிடவும்",
+  "Enter cost": "செலவை உள்ளிடவும்",
+  "Have you used this seed before?": "இந்த விதையை முன்பு பயன்படுத்தியுள்ளீர்களா?",
+  "1 - Very dissatisfied": "1 - மிகவும் அதிருப்தி",
+  "2 - Dissatisfied": "2 - அதிருப்தி",
+  "3 - Neutral": "3 - நடுநிலை",
+  "4 - Satisfied": "4 - திருப்தி",
+  "5 - Very satisfied": "5 - மிகவும் திருப்தி",
+  "Which seed or variety gave the best yield?": "எந்த விதை அல்லது ரகம் சிறந்த விளைச்சலை அளித்தது?",
+  "Why is it preferred?": "அது ஏன் விரும்பப்படுகிறது?",
+  "Seed Problems": "விதை தொடர்பான பிரச்சினைகள்",
+  "Any problems faced with seeds or varieties?": "விதைகள் அல்லது ரகங்கள் தொடர்பாக ஏதேனும் பிரச்சினைகளைச் சந்தித்தீர்களா?",
+  "Could not save field observations.": "வயல் கண்காணிப்புத் தகவல்களைச் சேமிக்க முடியவில்லை.",
+  "Describe crop growth condition": "பயிரின் வளர்ச்சி நிலையை விவரிக்கவும்",
+  "e.g. Vegetative, Flowering": "எ.கா. தழை வளர்ச்சி, பூக்கும் நிலை",
+  "Describe visible soil condition": "கண்ணுக்குத் தெரியும் மண் நிலையை விவரிக்கவும்",
+  "Describe any visible stress, damage or unusual condition": "கண்ணுக்குத் தெரியும் அழுத்தம், சேதம் அல்லது வழக்கத்திற்கு மாறான நிலையை விவரிக்கவும்",
+  "Add any additional field observations": "கூடுதல் வயல் கண்காணிப்புத் தகவல்களைச் சேர்க்கவும்",
+  "Field Observation Photo": "வயல் கண்காணிப்புப் புகைப்படம்",
+  "Field Observation Voice Note": "வயல் கண்காணிப்பு குரல் பதிவு",
+  "Offline Farmer": "ஆஃப்லைன் விவசாயி",
+  "Farmer name is required.": "விவசாயியின் பெயர் கட்டாயம்.",
+  "Unable to save Section B.": "பகுதி B-ஐச் சேமிக்க முடியவில்லை.",
+  "Farmer information could not be loaded.": "விவசாயி தகவல்களை ஏற்ற முடியவில்லை.",
+  "Farmer Profile Voice Note": "விவசாயி சுயவிவரக் குரல் பதிவு",
+  "Enter land area": "நிலப் பரப்பளவை உள்ளிடவும்",
+  "Enter main income source": "முக்கிய வருமான ஆதாரத்தை உள்ளிடவும்",
+  "Could not save crop information.": "பயிர் தகவல்களைச் சேமிக்க முடியவில்லை.",
+  "Enter previous crop": "முந்தைய பயிரை உள்ளிடவும்",
+  "Enter current crop": "தற்போதைய பயிரை உள்ளிடவும்",
+  "Enter crop variety": "பயிர் ரகத்தை உள்ளிடவும்",
+  "Describe why the farmer selected this crop...": "விவசாயி இந்தப் பயிரைத் தேர்ந்தெடுத்ததற்கான காரணத்தை விவரிக்கவும்...",
+  "Enter crop": "பயிரை உள்ளிடவும்",
+  "Describe the reason...": "காரணத்தை விவரிக்கவும்...",
+  "Crop History Voice Note": "பயிர் வரலாறு குரல் பதிவு",
+  "Could not save input information.": "இடுபொருள் தகவல்களைச் சேமிக்க முடியவில்லை.",
+  "Input Product(s)": "இடுபொருள் தயாரிப்பு(கள்)",
+  "Input Type": "இடுபொருள் வகை",
+  "Organic manure": "இயற்கை உரம்",
+  "Not applicable": "பொருந்தாது",
+  "Application Date": "பயன்படுத்திய தேதி",
+  "Growth Stage": "வளர்ச்சி நிலை",
+  "Times Applied": "பயன்படுத்திய முறை எண்ணிக்கை",
+  "Number of applications": "பயன்படுத்திய முறை எண்ணிக்கை",
+  "Input Cost": "இடுபொருள் செலவு",
+  "Dealer, shop or location": "விற்பனையாளர், கடை அல்லது இடம்",
+  "Why was this input used?": "இந்த இடுபொருள் ஏன் பயன்படுத்தப்பட்டது?",
+  "Reason for choosing this input": "இந்த இடுபொருளைத் தேர்ந்தெடுத்ததற்கான காரணம்",
+  "Who advised the farmer?": "விவசாயிக்கு யார் ஆலோசனை வழங்கினார்?",
+  "What result did the farmer observe after using the input?": "இடுபொருளைப் பயன்படுத்திய பிறகு விவசாயி என்ன விளைவைக் கவனித்தார்?",
+  "Input that did not work": "பலனளிக்காத இடுபொருள்",
+  "Record any input that did not work as expected": "எதிர்பார்த்தபடி பலனளிக்காத இடுபொருளைப் பதிவு செய்யவும்",
+  "Highest Input Cost": "அதிகபட்ச இடுபொருள் செலவு",
+  "Which input contributes the highest cost?": "எந்த இடுபொருள் அதிக செலவை ஏற்படுத்துகிறது?",
+  "Could not save market information.": "சந்தைத் தகவல்களைச் சேமிக்க முடியவில்லை.",
+  "Describe how the farmer decides the selling price": "விற்பனை விலையை விவசாயி எவ்வாறு தீர்மானிக்கிறார் என்பதை விவரிக்கவும்",
+  "Describe any buyer-related difficulties": "வாங்குபவர் தொடர்பான சிரமங்களை விவரிக்கவும்",
+  "Describe the main market difficulty": "முக்கிய சந்தைச் சிரமத்தை விவரிக்கவும்",
+  "Market & Selling Voice Note": "சந்தை மற்றும் விற்பனை குரல் பதிவு",
+  "Unknown field": "தெரியாத வயல்",
+  "Not yet": "இன்னும் இல்லை",
+  "No ID": "அடையாள எண் இல்லை",
+  "Pending sync": "ஒத்திசைவு நிலுவையில் உள்ளது",
+  "Saved Offline": "ஆஃப்லைனில் சேமிக்கப்பட்டது",
+  "Submission is saved on this device. It will be sent automatically when internet returns.": "சமர்ப்பிப்பு இந்தச் சாதனத்தில் சேமிக்கப்பட்டுள்ளது. இணையம் மீண்டும் கிடைக்கும்போது தானாக அனுப்பப்படும்.",
+  "Survey submitted successfully.": "கணக்கெடுப்பு வெற்றிகரமாகச் சமர்ப்பிக்கப்பட்டது.",
+  "Unable to submit the survey.": "கணக்கெடுப்பைச் சமர்ப்பிக்க முடியவில்லை.",
+  "Survey saved as draft.": "கணக்கெடுப்பு வரைவாகச் சேமிக்கப்பட்டது.",
+  "Unable to save the draft.": "வரைவைச் சேமிக்க முடியவில்லை.",
+  "GPS has not been captured. Please go back to Section A and capture GPS before submitting.": "GPS பதிவு செய்யப்படவில்லை. சமர்ப்பிப்பதற்கு முன் பகுதி A-க்குத் திரும்பி GPS-ஐப் பதிவு செய்யவும்.",
+  "Are you sure you want to submit this survey? After submission, it will be marked as submitted.": "இந்தக் கணக்கெடுப்பைச் சமர்ப்பிக்க விரும்புகிறீர்களா? சமர்ப்பித்த பிறகு இது சமர்ப்பிக்கப்பட்டதாகக் குறிக்கப்படும்.",
+  "District not provided": "மாவட்டம் வழங்கப்படவில்லை",
+  "Area not provided": "பரப்பளவு வழங்கப்படவில்லை",
+  "Land type not provided": "நில வகை வழங்கப்படவில்லை",
+  "GPS not captured": "GPS பதிவு செய்யப்படவில்லை",
+  "Not submitted": "சமர்ப்பிக்கப்படவில்லை",
+  "Please enter the farmer's name.": "விவசாயியின் பெயரை உள்ளிடவும்.",
+  "Please enter the farmer's mobile number.": "விவசாயியின் கைபேசி எண்ணை உள்ளிடவும்.",
+  "Mobile number must contain exactly 10 digits.": "கைபேசி எண் சரியாக 10 இலக்கங்களைக் கொண்டிருக்க வேண்டும்.",
+  "Please enter the village.": "கிராமத்தின் பெயரை உள்ளிடவும்.",
+  "Please enter the district.": "மாவட்டத்தின் பெயரை உள்ளிடவும்.",
+  "PIN Code must contain exactly 6 digits.": "அஞ்சல் குறியீடு சரியாக 6 இலக்கங்களைக் கொண்டிருக்க வேண்டும்.",
+  "Your session has expired. Please login again.": "உங்கள் அமர்வு காலாவதியாகிவிட்டது. மீண்டும் உள்நுழையவும்.",
+  "Farmer was saved, but the created farmer record could not be retrieved.": "விவசாயி விவரம் சேமிக்கப்பட்டது; ஆனால் உருவாக்கப்பட்ட பதிவைப் பெற முடியவில்லை.",
+  "Farmer saved successfully.": "விவசாயி விவரம் வெற்றிகரமாகச் சேமிக்கப்பட்டது.",
+  "Something went wrong while saving the farmer.": "விவசாயி விவரத்தைச் சேமிக்கும்போது பிழை ஏற்பட்டது.",
+  "10-digit mobile number": "10 இலக்க கைபேசி எண்",
+  "6-digit PIN Code": "6 இலக்க அஞ்சல் குறியீடு",
+  "Primary agricultural income source not provided": "முக்கிய வேளாண் வருமான ஆதாரம் வழங்கப்படவில்லை",
+
   // Language control itself
   "English": "ஆங்கிலம்",
   "Tamil": "தமிழ்",
@@ -899,8 +1251,7 @@ function shouldIgnoreElement(element: Element) {
     element.closest("[data-i18n-ignore='true']") !== null ||
     element.tagName === "SCRIPT" ||
     element.tagName === "STYLE" ||
-    element.tagName === "NOSCRIPT" ||
-    element.tagName === "TEXTAREA"
+    element.tagName === "NOSCRIPT"
   );
 }
 
@@ -919,6 +1270,8 @@ export function LanguageProvider({
   const originalAttrsRef = React.useRef<WeakMap<Element, Record<string, string>>>(
     new WeakMap()
   );
+  const lastTranslatedTextRef = React.useRef<WeakMap<Text, string>>(new WeakMap());
+  const lastTranslatedAttrsRef = React.useRef<WeakMap<Element, Record<string, string>>>(new WeakMap());
 
   useEffect(() => {
     const stored = window.localStorage.getItem(
@@ -964,38 +1317,29 @@ export function LanguageProvider({
         const textNode = node as Text;
         const parent = textNode.parentElement;
 
-        if (!parent || shouldIgnoreElement(parent)) continue;
+        if (!parent || shouldIgnoreElement(parent) || parent.tagName === "TEXTAREA") continue;
 
         const current = textNode.nodeValue ?? "";
-        let raw = originalText.has(textNode)
-          ? originalText.get(textNode)!
-          : current;
+        const lastApplied = lastTranslatedTextRef.current.get(textNode);
+        let raw = originalText.has(textNode) ? originalText.get(textNode)! : current;
 
-        if (!originalText.has(textNode)) {
-          // If React created this node while Tamil was active, recover its
-          // English source from the translation dictionary when possible.
-          if (language === "en") {
-            raw = recoverEnglishText(current);
-          }
+        // React may update an existing Text node in place. If its current
+        // value differs from what this translator last applied, treat it as
+        // fresh source copy instead of reusing stale text from an earlier render.
+        if (!originalText.has(textNode) || (lastApplied !== undefined && current !== lastApplied)) {
+          raw = language === "ta" ? recoverEnglishText(current) : current;
+          originalText.set(textNode, raw);
+        } else if (lastApplied === undefined && language === "ta" && /[\u0B80-\u0BFF]/.test(current)) {
+          raw = recoverEnglishText(current);
           originalText.set(textNode, raw);
         }
 
-        if (language === "en") {
-          // Always restore the original English text.
-          textNode.nodeValue = raw;
-          continue;
-        }
-
-        const translated = translateText(raw, language);
-
-        if (translated !== raw) {
-          const leading = raw.match(/^\s*/)?.[0] ?? "";
-          const trailing = raw.match(/\s*$/)?.[0] ?? "";
-          textNode.nodeValue =
-            leading + translated + trailing;
-        } else {
-          textNode.nodeValue = raw;
-        }
+        const translated = language === "ta" ? translateText(raw, language) : raw;
+        const leading = raw.match(/^\s*/)?.[0] ?? "";
+        const trailing = raw.match(/\s*$/)?.[0] ?? "";
+        const desired = leading + translated + trailing;
+        if (current !== desired) textNode.nodeValue = desired;
+        lastTranslatedTextRef.current.set(textNode, desired);
       }
     };
 
@@ -1014,27 +1358,22 @@ export function LanguageProvider({
         ];
 
         const stored = originalAttrs.get(element) ?? {};
+        const lastApplied = lastTranslatedAttrsRef.current.get(element) ?? {};
 
         attrs.forEach((attr) => {
           const current = element.getAttribute(attr);
-
-          if (current !== null && !(attr in stored)) {
-            stored[attr] = current;
+          if (current === null) return;
+          if (!(attr in stored) || (lastApplied[attr] !== undefined && current !== lastApplied[attr])) {
+            stored[attr] = language === "ta" ? recoverEnglishText(current) : current;
           }
-
           const raw = stored[attr];
-
-          if (!raw) return;
-
-          element.setAttribute(
-            attr,
-            language === "ta"
-              ? translateText(raw, language)
-              : raw
-          );
+          const desired = language === "ta" ? translateText(raw, language) : raw;
+          if (current !== desired) element.setAttribute(attr, desired);
+          lastApplied[attr] = desired;
         });
 
         originalAttrs.set(element, stored);
+        lastTranslatedAttrsRef.current.set(element, lastApplied);
       });
     };
 
@@ -1051,6 +1390,9 @@ export function LanguageProvider({
 
     observer.observe(document.body, {
       childList: true,
+      characterData: true,
+      attributes: true,
+      attributeFilter: ["placeholder", "title", "aria-label"],
       subtree: true,
     });
 

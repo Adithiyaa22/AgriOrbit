@@ -219,7 +219,7 @@ export default async function DashboardPage() {
 
   return (
     <InternLayout>
-      <main className="min-h-screen bg-[var(--background)] text-[var(--text)]">
+      <main className="agri-dashboard-scene min-h-screen bg-[var(--background)] text-[var(--text)]">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
 
           {/* ---------------------------------
@@ -325,7 +325,7 @@ export default async function DashboardPage() {
                 Recent Surveys
             --------------------------------- */}
 
-            <div className="rounded-xl border border-[var(--border)] bg-white shadow-sm">
+            <div className="agri-3d-card rounded-xl border border-[var(--border)] bg-white shadow-sm">
 
               <div className="flex items-center justify-between border-b border-[var(--border)] px-5 py-4">
                 <div>
@@ -442,7 +442,7 @@ export default async function DashboardPage() {
                 Quick Actions
             --------------------------------- */}
 
-            <div className="rounded-xl border border-[var(--border)] bg-white p-5 shadow-sm">
+            <div className="agri-3d-card rounded-xl border border-[var(--border)] bg-white p-5 shadow-sm">
 
               <h2 className="font-semibold">
                 Quick actions

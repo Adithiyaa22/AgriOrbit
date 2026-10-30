@@ -49,6 +49,14 @@ export default function AddFieldPage() {
     specialFeatures: "",
   });
 
+  // Preselect the farmer when this page is opened from a farmer profile.
+  useEffect(() => {
+    const requestedFarmer = new URLSearchParams(window.location.search).get("farmer");
+    if (requestedFarmer) {
+      setForm((previous) => ({ ...previous, farmerId: requestedFarmer }));
+    }
+  }, []);
+
   // Load farmers from Supabase
   useEffect(() => {
     async function loadFarmers() {

@@ -240,7 +240,7 @@ export default function InternLayout({
   const roleDisplay = getRoleDisplay(accountRole);
 
   return (
-    <div className="agri-app-shell relative min-h-screen overflow-x-hidden bg-[var(--background)]">
+    <div className="agri-app-shell agri-dashboard-scene relative min-h-screen overflow-x-hidden bg-[var(--background)]">
       <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-0 overflow-hidden">
         <div className="absolute left-[8%] top-24 h-24 w-24 rounded-full bg-green-200/20 blur-2xl animate-pulse" />
         <div className="absolute right-[10%] top-[42%] h-32 w-32 rounded-full bg-emerald-200/15 blur-3xl" />

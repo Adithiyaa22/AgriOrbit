@@ -103,8 +103,8 @@ export default function LoginPage() {
       <div className="flex min-h-screen flex-col lg:flex-row">
 
         {/* Left branding panel */}
-        <section className="flex min-h-[300px] flex-1 items-center justify-center bg-[var(--primary)] px-6 py-12 text-white lg:min-h-screen lg:px-12">
-          <div className="w-full max-w-lg">
+        <section className="agri-login-panel flex min-h-[300px] flex-1 items-center justify-center bg-[var(--primary)] px-6 py-12 text-white lg:min-h-screen lg:px-12">
+          <div className="agri-login-brand w-full max-w-lg">
 
             {/* Logo */}
             <div className="mb-7 flex items-center gap-3">
@@ -205,7 +205,8 @@ export default function LoginPage() {
 
         {/* Login panel */}
         <section className="flex flex-1 items-center justify-center px-5 py-10 sm:px-8 lg:px-12">
-          <div className="w-full max-w-md">
+          <div className="agri-login-form-scene w-full max-w-md">
+          <div className="w-full">
 
             <div className="mb-8">
               <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--light-green)] text-[var(--primary)]">
@@ -353,6 +354,7 @@ export default function LoginPage() {
                 Your account access is determined by the role assigned to it.
               </p>
             </form>
+          </div>
           </div>
         </section>
       </div>

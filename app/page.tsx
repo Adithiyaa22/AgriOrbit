@@ -66,7 +66,7 @@ export default function Home() {
         </header>
 
         <section className="relative pt-14 text-center sm:pt-20 lg:pt-24">
-          <div className="agri-hero-orbit" aria-hidden="true">
+          <div className="agri-hero-orbit agri-hero-3d" aria-hidden="true">
             <div className="agri-orbit-ring agri-orbit-ring-one" />
             <div className="agri-orbit-ring agri-orbit-ring-two" />
             <div className="agri-orbit-ring agri-orbit-ring-three" />
@@ -117,7 +117,7 @@ export default function Home() {
           <div className="agri-field-line agri-field-line-c" />
         </div>
 
-        <section className="agri-preview-scene mx-auto mt-3 max-w-6xl sm:mt-5 lg:mt-8" aria-label="AgriOrbit application preview">
+        <section className="agri-3d-card agri-preview-scene mx-auto mt-3 max-w-6xl sm:mt-5 lg:mt-8" aria-label="AgriOrbit application preview">
           <div className="agri-preview-shell rounded-[28px] bg-slate-950 p-2 shadow-[0_30px_80px_rgba(15,23,42,0.20)] ring-1 ring-slate-900/10 sm:p-3">
             <div className="overflow-hidden rounded-[22px] border border-white/10 bg-white">
               <div className="flex items-center justify-between bg-slate-900 px-4 py-3 text-xs text-slate-300 sm:px-5">
