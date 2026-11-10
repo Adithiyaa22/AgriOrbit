@@ -72,7 +72,6 @@ type SurveyRow = Survey & {
 
 export default function SurveysPage() {
   const [surveys, setSurveys] = useState<SurveyRow[]>([]);
-  const [summaryCounts, setSummaryCounts] = useState({ total: 0, submitted: 0, drafts: 0, gps: 0 });
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
 
@@ -88,19 +87,34 @@ export default function SurveysPage() {
     let localVisibleCount = 0;
 
     try {
-      const { data: surveyData, error: surveyError } = await supabase
-        .from("surveys")
-        .select(`
-          id, survey_code, farmer_id, field_id, enumerator_id,
-          survey_version, visit_date, visit_time, gps_captured,
-          gps_latitude, gps_longitude, internet_available,
-          information_provider, status, submitted_at, created_at
-        `)
-        .order("created_at", { ascending: false });
+      // Field interns should see and count every survey assigned to their own
+      // account. Fetch in pages so Supabase's default row limit cannot silently
+      // truncate the list and the summary cards.
+      const { data: authData, error: authError } = await supabase.auth.getUser();
+      if (authError) throw authError;
+      const currentUserId = authData.user?.id;
+      if (!currentUserId) throw new Error("Your session has expired. Please sign in again.");
 
-      if (surveyError) throw surveyError;
+      const pageSize = 500;
+      const rows: Survey[] = [];
+      for (let from = 0; ; from += pageSize) {
+        const { data: surveyPage, error: surveyError } = await supabase
+          .from("surveys")
+          .select(`
+            id, survey_code, farmer_id, field_id, enumerator_id,
+            survey_version, visit_date, visit_time, gps_captured,
+            gps_latitude, gps_longitude, internet_available,
+            information_provider, status, submitted_at, created_at
+          `)
+          .eq("enumerator_id", currentUserId)
+          .order("created_at", { ascending: false })
+          .range(from, from + pageSize - 1);
 
-      const rows = surveyData ?? [];
+        if (surveyError) throw surveyError;
+        const pageRows = (surveyPage ?? []) as Survey[];
+        rows.push(...pageRows);
+        if (pageRows.length < pageSize) break;
+      }
       if (rows.length > 0) {
         const farmerIds = Array.from(new Set(rows.map((item) => item.farmer_id).filter(Boolean)));
         const fieldIds = Array.from(new Set(rows.map((item) => item.field_id).filter(Boolean)));
@@ -137,11 +151,25 @@ export default function SurveysPage() {
     // Include offline/local drafts so surveys created without a successful
     // Supabase insert remain visible and can be reopened on this device.
     try {
-      const [localSections, cachedFarmers, cachedFields] = await Promise.all([
+      const [allLocalSections, cachedFarmers, cachedFields] = await Promise.all([
         offlineDB.surveyDrafts.toArray(),
         offlineDB.farmerCache.toArray(),
         offlineDB.fieldCache.toArray(),
       ]);
+      const { data: authData } = await supabase.auth.getUser();
+      const currentUserId = authData.user?.id;
+      // Local IndexedDB is device-wide, so only include drafts whose Section A
+      // identifies the currently signed-in intern.
+      const sectionsBySurvey = new Map<string, typeof allLocalSections>();
+      for (const section of allLocalSections) {
+        const existing = sectionsBySurvey.get(section.surveyId) ?? [];
+        existing.push(section);
+        sectionsBySurvey.set(section.surveyId, existing);
+      }
+      const localSections = Array.from(sectionsBySurvey.values()).flatMap((sections) => {
+        const sectionA = sections.find((item) => item.section === "A");
+        return sectionA?.data.enumeratorId === currentUserId ? sections : [];
+      });
 
       const remoteById = new Map<string, SurveyRow>(remoteRows.map((row) => [row.id, row]));
       const farmerMap = new Map<string, Farmer>(cachedFarmers.map((item) => [item.id, item as Farmer]));
@@ -221,23 +249,9 @@ export default function SurveysPage() {
       );
       localVisibleCount = merged.filter((row) => row.localOnly).length;
       setSurveys(merged);
-      // Keep the summary cards in sync with the exact de-duplicated records
-      // rendered in the table (remote + local drafts).
-      setSummaryCounts({
-        total: merged.length,
-        submitted: merged.filter((row) => String(row.status ?? "").toLowerCase() === "submitted").length,
-        drafts: merged.filter((row) => String(row.status ?? "").toLowerCase() === "draft").length,
-        gps: merged.filter((row) => row.gps_captured === true || String(row.gps_captured ?? "").toLowerCase() === "yes").length,
-      });
     } catch (offlineErr) {
       console.error("Unable to read local survey drafts:", offlineErr);
       setSurveys(remoteRows);
-      setSummaryCounts({
-        total: remoteRows.length,
-        submitted: remoteRows.filter((row) => String(row.status ?? "").toLowerCase() === "submitted").length,
-        drafts: remoteRows.filter((row) => String(row.status ?? "").toLowerCase() === "draft").length,
-        gps: remoteRows.filter((row) => row.gps_captured === true || String(row.gps_captured ?? "").toLowerCase() === "yes").length,
-      });
     }
 
     if (remoteError && remoteRows.length === 0 && localVisibleCount === 0) {
@@ -303,9 +317,17 @@ export default function SurveysPage() {
     statusFilter,
   ]);
 
-  // Summary values are populated together with the merged survey list so
-  // they cannot lag behind the records shown in the table.
-  const { total: totalCount, submitted: submittedCount, drafts: draftCount, gps: gpsCount } = summaryCounts;
+  // Derive all summary cards directly from the exact same state used by the
+  // table. This prevents the cards and visible survey rows from diverging.
+  const totalCount = surveys.length;
+  const submittedCount = surveys.filter((row) => ["submitted", "completed"].includes(String(row.status ?? "").trim().toLowerCase())).length;
+  const draftCount = surveys.filter((row) => ["draft", "pending_sync", "sync_failed"].includes(String(row.status ?? "").trim().toLowerCase())).length;
+  const gpsCount = surveys.filter((row) =>
+    row.gps_captured === true ||
+    String(row.gps_captured ?? "").trim().toLowerCase() === "yes" ||
+    (typeof row.gps_latitude === "number" && Number.isFinite(row.gps_latitude) &&
+      typeof row.gps_longitude === "number" && Number.isFinite(row.gps_longitude))
+  ).length;
 
   return (
     <InternLayout>
