@@ -1,22 +1,25 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import {
   Search,
   ClipboardList,
   MapPin,
   CalendarDays,
   User,
-  Map,
+  Map as MapIcon,
   CheckCircle2,
   Clock3,
   FileEdit,
   Loader2,
   AlertCircle,
+  RefreshCw,
 } from "lucide-react";
 
 import InternLayout from "@/components/layout/InternLayout";
 import { createClient } from "@/lib/supabase/client";
+import { offlineDB } from "@/lib/offline/db";
 
 const supabase = createClient();
 
@@ -63,6 +66,8 @@ type SurveyRow = Survey & {
   farmer: Farmer | null;
   field: Field | null;
   enumerator: Enumerator | null;
+  localOnly?: boolean;
+  localUpdatedAt?: string;
 };
 
 export default function SurveysPage() {
@@ -73,210 +78,171 @@ export default function SurveysPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    async function loadSurveys() {
-      setLoading(true);
-      setError("");
+  const loadSurveys = useCallback(async () => {
+    setLoading(true);
+    setError("");
 
-      try {
-        // ---------------------------------
-        // Get survey records
-        // ---------------------------------
+    let remoteRows: SurveyRow[] = [];
+    let remoteError = "";
+    let localVisibleCount = 0;
 
-        const {
-          data: surveyData,
-          error: surveyError,
-        } = await supabase
-          .from("surveys")
-          .select(
-            `
-              id,
-              survey_code,
-              farmer_id,
-              field_id,
-              enumerator_id,
-              survey_version,
-              visit_date,
-              visit_time,
-              gps_captured,
-              gps_latitude,
-              gps_longitude,
-              internet_available,
-              information_provider,
-              status,
-              submitted_at,
-              created_at
-            `
-          )
-          .order("created_at", {
-            ascending: false,
-          });
+    try {
+      const { data: surveyData, error: surveyError } = await supabase
+        .from("surveys")
+        .select(`
+          id, survey_code, farmer_id, field_id, enumerator_id,
+          survey_version, visit_date, visit_time, gps_captured,
+          gps_latitude, gps_longitude, internet_available,
+          information_provider, status, submitted_at, created_at
+        `)
+        .order("created_at", { ascending: false });
 
-        if (surveyError) {
-          throw surveyError;
-        }
+      if (surveyError) throw surveyError;
 
-        if (!surveyData || surveyData.length === 0) {
-          setSurveys([]);
-          return;
-        }
+      const rows = surveyData ?? [];
+      if (rows.length > 0) {
+        const farmerIds = Array.from(new Set(rows.map((item) => item.farmer_id).filter(Boolean)));
+        const fieldIds = Array.from(new Set(rows.map((item) => item.field_id).filter(Boolean)));
+        const enumeratorIds = Array.from(new Set(rows.map((item) => item.enumerator_id).filter(Boolean)));
 
-        // ---------------------------------
-        // Collect related IDs
-        // ---------------------------------
-
-        const farmerIds = Array.from(
-          new Set(
-            surveyData.map(
-              (survey) => survey.farmer_id
-            )
-          )
-        );
-
-        const fieldIds = Array.from(
-          new Set(
-            surveyData.map(
-              (survey) => survey.field_id
-            )
-          )
-        );
-
-        const enumeratorIds = Array.from(
-          new Set(
-            surveyData.map(
-              (survey) => survey.enumerator_id
-            )
-          )
-        );
-
-        // ---------------------------------
-        // Load related records
-        // ---------------------------------
-
-        const [
-          farmerResult,
-          fieldResult,
-          enumeratorResult,
-        ] = await Promise.all([
-          farmerIds.length > 0
-            ? supabase
-                .from("farmers")
-                .select(
-                  "id, farmer_code, full_name, village, district"
-                )
-                .in("id", farmerIds)
-            : Promise.resolve({
-                data: [],
-                error: null,
-              }),
-
-          fieldIds.length > 0
-            ? supabase
-                .from("fields")
-                .select(
-                  "id, field_code, field_name"
-                )
-                .in("id", fieldIds)
-            : Promise.resolve({
-                data: [],
-                error: null,
-              }),
-
-          enumeratorIds.length > 0
-            ? supabase
-                .from("profiles")
-                .select(
-                  "id, full_name, employee_code"
-                )
-                .in("id", enumeratorIds)
-            : Promise.resolve({
-                data: [],
-                error: null,
-              }),
+        const [farmerResult, fieldResult, enumeratorResult] = await Promise.all([
+          farmerIds.length ? supabase.from("farmers").select("id, farmer_code, full_name, village, district").in("id", farmerIds) : Promise.resolve({ data: [], error: null }),
+          fieldIds.length ? supabase.from("fields").select("id, field_code, field_name").in("id", fieldIds) : Promise.resolve({ data: [], error: null }),
+          enumeratorIds.length ? supabase.from("profiles").select("id, full_name, employee_code").in("id", enumeratorIds) : Promise.resolve({ data: [], error: null }),
         ]);
 
-        if (farmerResult.error) {
-          throw farmerResult.error;
-        }
+        // Related labels are helpful but must not hide the survey records
+        // themselves if a related-table policy temporarily denies access.
+        if (farmerResult.error) console.warn("Farmer details unavailable:", farmerResult.error.message);
+        if (fieldResult.error) console.warn("Field details unavailable:", fieldResult.error.message);
+        if (enumeratorResult.error) console.warn("Enumerator details unavailable:", enumeratorResult.error.message);
 
-        if (fieldResult.error) {
-          throw fieldResult.error;
-        }
+        const farmerMap = new Map<string, Farmer>((farmerResult.data ?? []).map((item) => [item.id, item as Farmer]));
+        const fieldMap = new Map<string, Field>((fieldResult.data ?? []).map((item) => [item.id, item as Field]));
+        const enumeratorMap = new Map<string, Enumerator>((enumeratorResult.data ?? []).map((item) => [item.id, item as Enumerator]));
 
-        if (enumeratorResult.error) {
-          throw enumeratorResult.error;
-        }
-
-        // ---------------------------------
-        // Create lookup maps
-        // ---------------------------------
-
-        const farmerMap: Record<string, Farmer> = {};
-
-        (farmerResult.data ?? []).forEach(
-          (farmer) => {
-            farmerMap[farmer.id] = farmer;
-          }
-        );
-
-        const fieldMap: Record<string, Field> = {};
-
-        (fieldResult.data ?? []).forEach(
-          (field) => {
-            fieldMap[field.id] = field;
-          }
-        );
-
-        const enumeratorMap: Record<
-          string,
-          Enumerator
-        > = {};
-
-        (enumeratorResult.data ?? []).forEach(
-          (enumerator) => {
-            enumeratorMap[enumerator.id] =
-              enumerator;
-          }
-        );
-
-        // ---------------------------------
-        // Combine survey + related data
-        // ---------------------------------
-
-        const rows: SurveyRow[] =
-          surveyData.map((survey) => ({
-            ...survey,
-            farmer:
-              farmerMap[survey.farmer_id] ??
-              null,
-            field:
-              fieldMap[survey.field_id] ??
-              null,
-            enumerator:
-              enumeratorMap[
-                survey.enumerator_id
-              ] ?? null,
-          }));
-
-        setSurveys(rows);
-      } catch (err) {
-        console.error(
-          "Surveys fetch error:",
-          err
-        );
-
-        setError(
-          err instanceof Error
-            ? err.message
-            : "Unable to load surveys."
-        );
-      } finally {
-        setLoading(false);
+        remoteRows = rows.map((survey) => ({
+          ...survey,
+          farmer: farmerMap.get(survey.farmer_id) ?? null,
+          field: fieldMap.get(survey.field_id) ?? null,
+          enumerator: enumeratorMap.get(survey.enumerator_id) ?? null,
+        }));
       }
+    } catch (err) {
+      console.error("Supabase surveys fetch error:", err);
+      remoteError = err instanceof Error ? err.message : "Unable to load online surveys.";
     }
 
-    loadSurveys();
+    // Include offline/local drafts so surveys created without a successful
+    // Supabase insert remain visible and can be reopened on this device.
+    try {
+      const [localSections, cachedFarmers, cachedFields] = await Promise.all([
+        offlineDB.surveyDrafts.toArray(),
+        offlineDB.farmerCache.toArray(),
+        offlineDB.fieldCache.toArray(),
+      ]);
+
+      const remoteById = new Map<string, SurveyRow>(remoteRows.map((row) => [row.id, row]));
+      const farmerMap = new Map<string, Farmer>(cachedFarmers.map((item) => [item.id, item as Farmer]));
+      const fieldMap = new Map<string, Field>(cachedFields.map((item) => [item.id, item as Field]));
+      const localBySurvey = new Map<string, typeof localSections>();
+
+      for (const section of localSections) {
+        const existing = localBySurvey.get(section.surveyId) ?? [];
+        existing.push(section);
+        localBySurvey.set(section.surveyId, existing);
+      }
+
+      for (const [surveyId, sections] of localBySurvey) {
+        const sectionA = sections.find((item) => item.section === "A");
+        const sectionP = sections.find((item) => item.section === "P");
+        const localSubmitted = sectionP?.data.submit === true;
+        const data = sectionA?.data ?? {};
+        const getString = (value: unknown) => typeof value === "string" ? value : "";
+        const farmerId = getString(data.farmerId);
+        const fieldId = getString(data.fieldId);
+        const enumeratorId = getString(data.enumeratorId);
+        const gpsValue = data.gpsCaptured;
+        const gpsCaptured = typeof gpsValue === "boolean" ? gpsValue : gpsValue === "Yes" ? true : gpsValue === "No" ? false : null;
+        const gpsLatitude = typeof data.gpsLatitude === "number" ? data.gpsLatitude : null;
+        const gpsLongitude = typeof data.gpsLongitude === "number" ? data.gpsLongitude : null;
+        const latest = sections.reduce((a, b) => a.updatedAt > b.updatedAt ? a : b);
+        const existing = remoteById.get(surveyId);
+
+        if (existing) {
+          // Reflect locally saved, not-yet-synced Section A values in the list.
+          if (sectionA && sectionA.status !== "synced") {
+            existing.gps_captured = gpsCaptured ?? existing.gps_captured;
+            existing.gps_latitude = gpsLatitude ?? existing.gps_latitude;
+            existing.gps_longitude = gpsLongitude ?? existing.gps_longitude;
+            existing.internet_available = typeof data.internetAvailable === "boolean"
+              ? data.internetAvailable
+              : data.internetAvailable === "Yes" ? true
+              : data.internetAvailable === "No" ? false
+              : existing.internet_available;
+          }
+          if (localSubmitted && sectionP?.status !== "synced") {
+            existing.status = "submitted";
+            existing.submitted_at = existing.submitted_at || sectionP?.updatedAt || latest.updatedAt;
+          }
+          existing.localUpdatedAt = latest.updatedAt;
+          continue;
+        }
+
+        const localSurvey: SurveyRow = {
+          id: surveyId,
+          survey_code: sections[0].surveyCode || `LOCAL-${surveyId.slice(0, 8).toUpperCase()}`,
+          farmer_id: farmerId,
+          field_id: fieldId,
+          enumerator_id: enumeratorId,
+          survey_version: typeof data.survey_version === "number" ? data.survey_version : 1,
+          visit_date: getString(data.visitDate) || null,
+          visit_time: null,
+          gps_captured: gpsCaptured,
+          gps_latitude: gpsLatitude,
+          gps_longitude: gpsLongitude,
+          internet_available: typeof data.internetAvailable === "boolean" ? data.internetAvailable : data.internetAvailable === "Yes" ? true : data.internetAvailable === "No" ? false : null,
+          information_provider: getString(data.informationProvider) || null,
+          status: localSubmitted ? "submitted" : "draft",
+          submitted_at: localSubmitted ? (sectionP?.updatedAt || latest.updatedAt) : null,
+          created_at: latest.updatedAt,
+          farmer: farmerMap.get(farmerId) ?? null,
+          field: fieldMap.get(fieldId) ?? null,
+          enumerator: null,
+          localOnly: true,
+          localUpdatedAt: latest.updatedAt,
+        };
+        remoteById.set(surveyId, localSurvey);
+      }
+
+      const merged: SurveyRow[] = Array.from(remoteById.values()).sort((a: SurveyRow, b: SurveyRow) =>
+        (b.localUpdatedAt || b.created_at || "").localeCompare(a.localUpdatedAt || a.created_at || "")
+      );
+      localVisibleCount = merged.filter((row) => row.localOnly).length;
+      setSurveys(merged);
+    } catch (offlineErr) {
+      console.error("Unable to read local survey drafts:", offlineErr);
+      setSurveys(remoteRows);
+    }
+
+    if (remoteError && remoteRows.length === 0 && localVisibleCount === 0) {
+      setError(`Online surveys could not be loaded: ${remoteError}`);
+    }
+    setLoading(false);
   }, []);
+
+  useEffect(() => {
+    void loadSurveys();
+    const refresh = () => { if (document.visibilityState === "visible") void loadSurveys(); };
+    window.addEventListener("focus", refresh);
+    window.addEventListener("pageshow", refresh);
+    document.addEventListener("visibilitychange", refresh);
+    return () => {
+      window.removeEventListener("focus", refresh);
+      window.removeEventListener("pageshow", refresh);
+      document.removeEventListener("visibilitychange", refresh);
+    };
+  }, [loadSurveys]);
 
   // ---------------------------------
   // Search + status filter
@@ -365,7 +331,17 @@ export default function SurveysPage() {
                 </p>
               </div>
 
-              <div className="flex w-fit items-center gap-3 rounded-xl border border-[var(--border)] bg-white px-4 py-3 shadow-sm">
+              <div className="flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => void loadSurveys()}
+                  disabled={loading}
+                  className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-[var(--border)] bg-white px-4 py-3 text-sm font-semibold text-[var(--text)] shadow-sm transition hover:border-[var(--primary)] hover:text-[var(--primary)] disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  <RefreshCw size={16} className={loading ? "animate-spin" : ""} />
+                  Refresh
+                </button>
+                <div className="flex w-fit items-center gap-3 rounded-xl border border-[var(--border)] bg-white px-4 py-3 shadow-sm">
 
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--light-green)]">
                   <ClipboardList
@@ -383,7 +359,7 @@ export default function SurveysPage() {
                     {surveys.length}
                   </p>
                 </div>
-
+                </div>
               </div>
             </div>
           </section>
@@ -615,6 +591,9 @@ export default function SurveysPage() {
                         <th className="px-5 py-4 text-center text-xs font-semibold uppercase tracking-wide text-[var(--muted)]">
                           Status
                         </th>
+                        <th className="px-5 py-4 text-right text-xs font-semibold uppercase tracking-wide text-[var(--muted)]">
+                          Open
+                        </th>
 
                       </tr>
                     </thead>
@@ -632,15 +611,16 @@ export default function SurveysPage() {
 
                             <td className="px-5 py-4">
 
-                              <p className="font-semibold text-sm">
+                              <Link
+                                href={`/surveys/${survey.id}/a`}
+                                className="font-semibold text-sm text-[var(--primary)] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] rounded"
+                              >
                                 {survey.survey_code}
-                              </p>
+                              </Link>
 
                               <p className="mt-1 text-xs text-[var(--muted)]">
-                                Version{" "}
-                                {
-                                  survey.survey_version
-                                }
+                                Version {survey.survey_version}
+                                {survey.localOnly ? " · Saved on this device" : ""}
                               </p>
 
                             </td>
@@ -868,6 +848,14 @@ export default function SurveysPage() {
                               )}
 
                             </td>
+                            <td className="px-5 py-4 text-right">
+                              <Link
+                                href={`/surveys/${survey.id}/a`}
+                                className="inline-flex items-center justify-center rounded-lg bg-[var(--primary)] px-3 py-2 text-xs font-semibold text-white transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                              >
+                                Open survey
+                              </Link>
+                            </td>
 
                           </tr>
                         )
@@ -901,15 +889,16 @@ export default function SurveysPage() {
 
                         <div>
 
-                          <p className="font-semibold">
+                          <Link
+                            href={`/surveys/${survey.id}/a`}
+                            className="font-semibold text-[var(--primary)] hover:underline"
+                          >
                             {survey.survey_code}
-                          </p>
+                          </Link>
 
                           <p className="mt-1 text-xs text-[var(--muted)]">
-                            Version{" "}
-                            {
-                              survey.survey_version
-                            }
+                            Version {survey.survey_version}
+                            {survey.localOnly ? " · Saved on this device" : ""}
                           </p>
 
                         </div>
@@ -980,7 +969,7 @@ export default function SurveysPage() {
 
                         <div className="flex items-start gap-2">
 
-                          <Map
+                          <MapIcon
                             size={16}
                             className="mt-0.5 shrink-0 text-[var(--muted)]"
                           />
@@ -1100,22 +1089,19 @@ export default function SurveysPage() {
 
                       {survey.submitted_at && (
                         <div className="mt-4 rounded-lg bg-green-50 p-3">
-
-                          <p className="text-xs font-medium text-green-700">
-                            Submitted
-                          </p>
-
+                          <p className="text-xs font-medium text-green-700">Submitted</p>
                           <p className="mt-1 text-xs text-green-800">
-                            {new Date(
-                              survey.submitted_at
-                            ).toLocaleString(
-                              "en-IN"
-                            )}
+                            {new Date(survey.submitted_at).toLocaleString("en-IN")}
                           </p>
-
                         </div>
                       )}
 
+                      <Link
+                        href={`/surveys/${survey.id}/a`}
+                        className="mt-4 inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-[var(--primary)] px-4 py-2 text-sm font-semibold text-white transition hover:brightness-110"
+                      >
+                        Open survey and sections
+                      </Link>
                     </div>
                   )
                 )}

@@ -21,7 +21,6 @@ import { createClient } from "@/lib/supabase/client";
 import OfflineStatus from "@/components/survey/OfflineStatus";
 import OfflineSyncManager from "@/components/survey/OfflineSyncManager";
 import MaintenanceNotice from "@/components/intern/MaintenanceNotice";
-import SurveySectionNavigation from "@/components/survey/SurveySectionNavigation";
 
 type UserRole = "intern" | "admin" | "super_admin";
 
@@ -461,19 +460,7 @@ export default function InternLayout({
 
       <main className="pb-20 lg:ml-64 lg:pb-0">
         <MaintenanceNotice />
-        {(() => {
-          const surveyRoute = pathname.match(/^\/surveys\/([^/]+)\/([a-p])$/i);
-          if (!surveyRoute) return children;
-          const [, surveyId, section] = surveyRoute;
-          return (
-            <div className="mx-auto grid w-full max-w-[1600px] grid-cols-1 gap-4 px-3 pt-4 sm:px-5 lg:px-6 xl:grid-cols-[260px_minmax(0,1fr)] xl:gap-6">
-              <aside className="min-w-0 xl:sticky xl:top-4 xl:max-h-[calc(100vh-2rem)] xl:self-start xl:overflow-y-auto">
-                <SurveySectionNavigation surveyId={surveyId} activeSection={section.toLowerCase()} />
-              </aside>
-              <div className="min-w-0">{children}</div>
-            </div>
-          );
-        })()}
+        {children}
       </main>
 
       {/* Mobile navigation */}
