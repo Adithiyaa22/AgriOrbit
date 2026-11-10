@@ -72,6 +72,7 @@ type SurveyRow = Survey & {
 
 export default function SurveysPage() {
   const [surveys, setSurveys] = useState<SurveyRow[]>([]);
+  const [summaryCounts, setSummaryCounts] = useState({ total: 0, submitted: 0, drafts: 0, gps: 0 });
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
 
@@ -220,9 +221,23 @@ export default function SurveysPage() {
       );
       localVisibleCount = merged.filter((row) => row.localOnly).length;
       setSurveys(merged);
+      // Keep the summary cards in sync with the exact de-duplicated records
+      // rendered in the table (remote + local drafts).
+      setSummaryCounts({
+        total: merged.length,
+        submitted: merged.filter((row) => String(row.status ?? "").toLowerCase() === "submitted").length,
+        drafts: merged.filter((row) => String(row.status ?? "").toLowerCase() === "draft").length,
+        gps: merged.filter((row) => row.gps_captured === true || String(row.gps_captured ?? "").toLowerCase() === "yes").length,
+      });
     } catch (offlineErr) {
       console.error("Unable to read local survey drafts:", offlineErr);
       setSurveys(remoteRows);
+      setSummaryCounts({
+        total: remoteRows.length,
+        submitted: remoteRows.filter((row) => String(row.status ?? "").toLowerCase() === "submitted").length,
+        drafts: remoteRows.filter((row) => String(row.status ?? "").toLowerCase() === "draft").length,
+        gps: remoteRows.filter((row) => row.gps_captured === true || String(row.gps_captured ?? "").toLowerCase() === "yes").length,
+      });
     }
 
     if (remoteError && remoteRows.length === 0 && localVisibleCount === 0) {
@@ -288,24 +303,9 @@ export default function SurveysPage() {
     statusFilter,
   ]);
 
-  // ---------------------------------
-  // Summary counts
-  // ---------------------------------
-
-  const submittedCount = surveys.filter(
-    (survey) =>
-      survey.status === "submitted"
-  ).length;
-
-  const draftCount = surveys.filter(
-    (survey) =>
-      survey.status === "draft"
-  ).length;
-
-  const gpsCount = surveys.filter(
-    (survey) =>
-      survey.gps_captured === true
-  ).length;
+  // Summary values are populated together with the merged survey list so
+  // they cannot lag behind the records shown in the table.
+  const { total: totalCount, submitted: submittedCount, drafts: draftCount, gps: gpsCount } = summaryCounts;
 
   return (
     <InternLayout>
@@ -356,7 +356,7 @@ export default function SurveysPage() {
                   </p>
 
                   <p className="text-xl font-bold">
-                    {surveys.length}
+                    {totalCount}
                   </p>
                 </div>
                 </div>
@@ -374,7 +374,7 @@ export default function SurveysPage() {
               </p>
 
               <p className="mt-1 text-2xl font-bold">
-                {surveys.length}
+                {totalCount}
               </p>
             </div>
 
