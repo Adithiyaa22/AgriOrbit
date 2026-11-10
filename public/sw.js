@@ -1,4 +1,4 @@
-const CACHE_NAME = "agriorbit-shell-v2";
+const CACHE_NAME = "agriorbit-shell-v3";
 
 const APP_SHELL = [
   "/",
@@ -14,7 +14,13 @@ const APP_SHELL = [
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL))
+    caches.open(CACHE_NAME).then(async (cache) => {
+      // Cache available shell routes individually so one unavailable route
+      // cannot prevent the service worker from installing.
+      await Promise.allSettled(
+        APP_SHELL.map((url) => cache.add(url))
+      );
+    })
   );
   self.skipWaiting();
 });
@@ -26,7 +32,7 @@ self.addEventListener("activate", (event) => {
       .then((keys) =>
         Promise.all(
           keys
-            .filter((key) => key !== CACHE_NAME)
+            .filter((key) => key.startsWith("agriorbit-shell-") && key !== CACHE_NAME)
             .map((key) => caches.delete(key))
         )
       )
@@ -36,63 +42,59 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   const request = event.request;
-
   if (request.method !== "GET") return;
 
   const url = new URL(request.url);
-
   if (url.origin !== self.location.origin) return;
 
-  // Never intercept API requests, Supabase requests, or Next server actions.
+  // Leave APIs, Next data/server requests, and immutable build assets to the browser.
   if (
     url.pathname.startsWith("/api/") ||
-    url.pathname.startsWith("/_next/data/") ||
-    url.pathname.startsWith("/_next/server/")
-  ) {
-    return;
-  }
-
-  // Let Next.js static chunks use the browser's normal HTTP cache.
-  // This prevents an old service worker from serving stale JS chunks after deployment.
-  if (url.pathname.startsWith("/_next/static/")) {
-    return;
-  }
+    url.pathname.startsWith("/_next/") ||
+    url.pathname.startsWith("/auth/")
+  ) return;
 
   if (request.mode === "navigate") {
     event.respondWith(
       fetch(request)
         .then((response) => {
-          if (response.ok) {
+          if (response && response.ok) {
             const copy = response.clone();
-            caches.open(CACHE_NAME).then((cache) => {
-              cache.put(request, copy).catch(() => undefined);
-            });
+            caches.open(CACHE_NAME).then((cache) =>
+              cache.put(request, copy).catch(() => undefined)
+            );
           }
           return response;
         })
         .catch(async () => {
           const cached = await caches.match(request);
-          return cached || (await caches.match("/"));
+          if (cached) return cached;
+          const shell = await caches.match("/");
+          if (shell) return shell;
+          return new Response(
+            "You are offline. Please reconnect to continue using AgriOrbit.",
+            { status: 503, headers: { "Content-Type": "text/plain; charset=utf-8" } }
+          );
         })
     );
     return;
   }
 
   event.respondWith(
-    caches.match(request).then((cached) => {
+    caches.match(request).then(async (cached) => {
       if (cached) return cached;
-
-      return fetch(request)
-        .then((response) => {
-          if (response.ok) {
-            const copy = response.clone();
-            caches.open(CACHE_NAME).then((cache) => {
-              cache.put(request, copy).catch(() => undefined);
-            });
-          }
-          return response;
-        })
-        .catch(() => cached);
+      try {
+        const response = await fetch(request);
+        if (response && response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then((cache) =>
+            cache.put(request, copy).catch(() => undefined)
+          );
+        }
+        return response;
+      } catch {
+        return new Response("", { status: 503 });
+      }
     })
   );
 });

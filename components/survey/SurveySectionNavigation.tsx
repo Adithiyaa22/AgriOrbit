@@ -37,7 +37,7 @@ export default function SurveySectionNavigation({
   return (
     <aside
       aria-label="Survey section navigation"
-      className="survey-section-nav mb-4 rounded-xl border border-[var(--border)] bg-white/95 p-3 shadow-sm backdrop-blur-sm xl:fixed xl:left-[17rem] xl:top-4 xl:z-30 xl:mb-0 xl:w-[14rem] xl:max-h-[calc(100vh-2rem)] xl:overflow-y-auto"
+      className="survey-section-nav w-full rounded-xl border border-[var(--border)] bg-white/95 p-3 shadow-sm backdrop-blur-sm lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto"
     >
       <div className="mb-2 flex items-center gap-2 px-1">
         <ClipboardList size={16} className="shrink-0 text-[var(--primary)]" />
@@ -53,7 +53,7 @@ export default function SurveySectionNavigation({
 
       {/* Compact touch-friendly selector for phones and tablets. */}
       <nav
-        className="grid grid-cols-8 gap-1.5 xl:hidden"
+        className="grid grid-cols-8 gap-1.5 lg:hidden"
         aria-label="Choose survey section"
       >
         {sections.map((section) => {
@@ -78,7 +78,7 @@ export default function SurveySectionNavigation({
       </nav>
 
       {/* Persistent compact section list on wide laptop/desktop screens. */}
-      <nav className="hidden xl:grid xl:grid-cols-1 xl:gap-1" aria-label="Choose survey section">
+      <nav className="hidden lg:grid lg:grid-cols-1 lg:gap-1" aria-label="Choose survey section">
         {sections.map((section) => {
           const isActive = activeSection === section.id;
           return (
@@ -102,7 +102,7 @@ export default function SurveySectionNavigation({
               >
                 {section.id.toUpperCase()}
               </span>
-              <span className="min-w-0 flex-1 text-[10px] font-semibold leading-4">
+              <span className="min-w-0 flex-1 text-[11px] font-semibold leading-4">
                 {section.title}
               </span>
               {isActive ? (

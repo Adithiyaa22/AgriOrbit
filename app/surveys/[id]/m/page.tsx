@@ -448,10 +448,9 @@ export default function LabourOperationsPage() {
 
   return (
     <InternLayout>
-      <div className="mx-auto max-w-7xl px-4 pt-5 sm:px-6 lg:px-8">
-        <SurveySectionNavigation surveyId={surveyId} activeSection="m" />
-      </div>
-      <div className="mx-auto max-w-4xl xl:mx-0 xl:ml-[270px] xl:mr-4 space-y-6 pb-10">
+      <div className="mx-auto grid w-full max-w-[1800px] grid-cols-1 items-start gap-4 px-3 py-4 sm:px-5 lg:grid-cols-[210px_minmax(0,1fr)] lg:gap-5 xl:grid-cols-[230px_minmax(0,1fr)] xl:px-6">
+      <SurveySectionNavigation surveyId={surveyId} activeSection="m" />
+      <div className="min-w-0 w-full space-y-6 pb-10">
 
         <div>
           <p className="text-sm font-medium text-green-700">
@@ -944,6 +943,7 @@ export default function LabourOperationsPage() {
         </div>
 
       </div>
+    </div>
     </InternLayout>
   );
 }
