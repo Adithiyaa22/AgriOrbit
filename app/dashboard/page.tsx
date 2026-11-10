@@ -248,7 +248,7 @@ export default async function DashboardPage() {
               New Survey CTA
           --------------------------------- */}
 
-          <section className="agri-3d-card agri-soft-pulse mb-6 rounded-2xl bg-[var(--primary)] p-5 text-white shadow-lg sm:p-6">
+          <section className="agri-3d-card agri-soft-pulse relative z-10 mb-6 rounded-2xl bg-[var(--primary)] p-5 text-white shadow-lg sm:p-6">
             <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <h2 className="text-lg font-semibold">
@@ -264,7 +264,7 @@ export default async function DashboardPage() {
               <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
                 <Link
                   href="/farmers/new"
-                  className="flex h-11 w-full items-center justify-center gap-2 rounded-lg border border-white/40 bg-white/10 px-5 text-sm font-semibold text-white transition hover:bg-white/20 sm:w-auto"
+                  className="relative z-20 flex h-11 w-full items-center justify-center gap-2 rounded-lg border border-white/40 bg-white/10 px-5 text-sm font-semibold text-white transition hover:bg-white/20 sm:w-auto"
                 >
                   <Users size={18} />
                   Add New Farmer
@@ -272,7 +272,7 @@ export default async function DashboardPage() {
 
                 <Link
                   href="/surveys/new"
-                  className="flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-semibold text-[var(--primary)] transition hover:bg-green-50 sm:w-auto"
+                  className="relative z-20 flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-semibold text-[var(--primary)] transition hover:bg-green-50 sm:w-auto"
                 >
                   <Plus size={18} />
                   Start New Survey

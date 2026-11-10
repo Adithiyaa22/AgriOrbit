@@ -37,7 +37,7 @@ export default function SurveySectionNavigation({
   return (
     <aside
       aria-label="Survey section navigation"
-      className="survey-section-nav mb-4 rounded-xl border border-[var(--border)] bg-white/95 p-3 shadow-sm backdrop-blur-sm xl:fixed xl:left-[17rem] xl:top-5 xl:z-30 xl:mb-0 xl:w-[15rem] xl:max-h-[calc(100vh-2.5rem)] xl:overflow-y-auto"
+      className="survey-section-nav mb-4 rounded-xl border border-[var(--border)] bg-white/95 p-3 shadow-sm backdrop-blur-sm xl:fixed xl:left-[17rem] xl:top-4 xl:z-30 xl:mb-0 xl:w-[14rem] xl:max-h-[calc(100vh-2rem)] xl:overflow-y-auto"
     >
       <div className="mb-2 flex items-center gap-2 px-1">
         <ClipboardList size={16} className="shrink-0 text-[var(--primary)]" />
