@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 
 import InternLayout from "@/components/layout/InternLayout";
+import SurveySectionNavigation from "@/components/survey/SurveySectionNavigation";
 import { createClient } from "@/lib/supabase/client";
 import { getClientUser } from "@/lib/auth/get-client-user";
 import { useOnlineStatus } from "@/lib/offline/useOnlineStatus";
@@ -560,6 +561,9 @@ export default function SurveyAPage() {
   return (
     <InternLayout>
       <main className="min-h-screen bg-[var(--background)] text-[var(--text)]">
+        <div className="mx-auto max-w-7xl px-4 pt-5 sm:px-6 lg:px-8">
+          <SurveySectionNavigation surveyId={surveyId} activeSection="a" />
+        </div>
         <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
 
           <div className="mb-6">

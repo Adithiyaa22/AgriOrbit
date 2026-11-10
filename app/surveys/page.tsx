@@ -322,12 +322,10 @@ export default function SurveysPage() {
   const totalCount = surveys.length;
   const submittedCount = surveys.filter((row) => ["submitted", "completed"].includes(String(row.status ?? "").trim().toLowerCase())).length;
   const draftCount = surveys.filter((row) => ["draft", "pending_sync", "sync_failed"].includes(String(row.status ?? "").trim().toLowerCase())).length;
-  const gpsCount = surveys.filter((row) =>
-    row.gps_captured === true ||
-    String(row.gps_captured ?? "").trim().toLowerCase() === "yes" ||
-    (typeof row.gps_latitude === "number" && Number.isFinite(row.gps_latitude) &&
-      typeof row.gps_longitude === "number" && Number.isFinite(row.gps_longitude))
-  ).length;
+  // The database's gps_captured flag is the source of truth. Do not infer
+  // capture from coordinates alone: older/manual records may contain
+  // coordinates while explicitly storing gps_captured = false.
+  const gpsCount = surveys.filter((row) => row.gps_captured === true).length;
 
   return (
     <InternLayout>

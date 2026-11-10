@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import InternLayout from "@/components/layout/InternLayout";
+import SurveySectionNavigation from "@/components/survey/SurveySectionNavigation";
 import VoiceRecorder from "@/components/survey/VoiceRecorder";
 import { useOnlineStatus } from "@/lib/offline/useOnlineStatus";
 import {
@@ -375,6 +376,9 @@ export default function FarmerKnowledgePage() {
 
   return (
     <InternLayout>
+      <div className="mx-auto max-w-7xl px-4 pt-5 sm:px-6 lg:px-8">
+        <SurveySectionNavigation surveyId={surveyId} activeSection="n" />
+      </div>
       <div className="mx-auto max-w-4xl space-y-6 pb-10">
 
         {!isOnline && (

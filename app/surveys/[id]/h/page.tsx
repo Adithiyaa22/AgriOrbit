@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import InternLayout from "@/components/layout/InternLayout";
+import SurveySectionNavigation from "@/components/survey/SurveySectionNavigation";
 import PhotoUpload from "@/components/survey/PhotoUpload";
 import { useOnlineStatus } from "@/lib/offline/useOnlineStatus";
 import {
@@ -513,6 +514,9 @@ export default function SurveyHPage() {
 
   return (
     <InternLayout>
+      <div className="mx-auto max-w-7xl px-4 pt-5 sm:px-6 lg:px-8">
+        <SurveySectionNavigation surveyId={surveyId} activeSection="h" />
+      </div>
       <div className="mx-auto max-w-5xl space-y-6 p-4 md:p-6">
 
         <div>
