@@ -476,7 +476,7 @@ export default function SurveyPPage() {
     return (
       <InternLayout>
         <main className="min-h-screen bg-[var(--background)]">
-          <div className="mx-auto max-w-3xl px-4 py-8">
+          <div className="mx-auto max-w-3xl xl:mx-0 xl:ml-[270px] xl:mr-4 px-4 py-8">
             <div className="rounded-xl border border-red-200 bg-red-50 p-5 text-sm text-red-700">
               {error || "Survey could not be found."}
             </div>
@@ -492,7 +492,7 @@ export default function SurveyPPage() {
         <SurveySectionNavigation surveyId={surveyId} activeSection="p" />
       </div>
       <main className="min-h-screen bg-[var(--background)] text-[var(--text)]">
-        <div className="mx-auto max-w-5xl px-4 py-6 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-5xl xl:mx-0 xl:ml-[270px] xl:mr-4 px-4 py-6 sm:px-6 lg:px-8">
           <div className="mb-6">
             <button
               type="button"

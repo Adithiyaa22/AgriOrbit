@@ -451,7 +451,7 @@ export default function LabourOperationsPage() {
       <div className="mx-auto max-w-7xl px-4 pt-5 sm:px-6 lg:px-8">
         <SurveySectionNavigation surveyId={surveyId} activeSection="m" />
       </div>
-      <div className="mx-auto max-w-4xl space-y-6 pb-10">
+      <div className="mx-auto max-w-4xl xl:mx-0 xl:ml-[270px] xl:mr-4 space-y-6 pb-10">
 
         <div>
           <p className="text-sm font-medium text-green-700">

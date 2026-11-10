@@ -379,7 +379,7 @@ export default function FarmerKnowledgePage() {
       <div className="mx-auto max-w-7xl px-4 pt-5 sm:px-6 lg:px-8">
         <SurveySectionNavigation surveyId={surveyId} activeSection="n" />
       </div>
-      <div className="mx-auto max-w-4xl space-y-6 pb-10">
+      <div className="mx-auto max-w-4xl xl:mx-0 xl:ml-[270px] xl:mr-4 space-y-6 pb-10">
 
         {!isOnline && (
           <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">

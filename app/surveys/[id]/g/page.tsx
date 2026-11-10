@@ -526,7 +526,7 @@ export default function SurveyGPage() {
       <div className="mx-auto max-w-7xl px-4 pt-5 sm:px-6 lg:px-8">
         <SurveySectionNavigation surveyId={surveyId} activeSection="g" />
       </div>
-      <div className="mx-auto max-w-5xl space-y-6 p-4 md:p-6">
+      <div className="mx-auto max-w-5xl xl:mx-0 xl:ml-[270px] xl:mr-4 space-y-6 p-4 md:p-6">
 
         <div>
           <div className="mb-2 text-sm text-slate-500">

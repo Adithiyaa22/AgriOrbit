@@ -477,7 +477,7 @@ export default function SectionDPage() {
       <div className="mx-auto max-w-7xl px-4 pt-5 sm:px-6 lg:px-8">
         <SurveySectionNavigation surveyId={surveyId} activeSection="d" />
       </div>
-      <div className="mx-auto max-w-5xl p-4 sm:p-6">
+      <div className="mx-auto max-w-5xl xl:mx-0 xl:ml-[270px] xl:mr-4 p-4 sm:p-6">
 
         <div className="mb-6">
           <div className="mb-2 text-sm font-medium text-green-700">

@@ -429,7 +429,7 @@ export default function SurveyOPage() {
       <div className="mx-auto max-w-7xl px-4 pt-5 sm:px-6 lg:px-8">
         <SurveySectionNavigation surveyId={surveyId} activeSection="o" />
       </div>
-      <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-5xl xl:mx-0 xl:ml-[270px] xl:mr-4 px-4 py-6 sm:px-6 lg:px-8">
 
         {!isOnline && (
           <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
